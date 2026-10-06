@@ -1,775 +1,542 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Smart — Alkali Metals</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study Smart</title>
 <style>
-:root{
-  --bg:#f6f3ec;
-  --bg-alt:#efebe0;
-  --panel:#ffffff;
-  --card:#f4f1e8;
-  --card-hi:#e8e3d4;
-  --line:#d9d2c0;
-  --text:#1f2530;
-  --text-soft:#5b6575;
-  --amber:#b8650c;
-  --amber-dim:#fbe8cc;
-  --teal:#1b7f74;
-  --teal-dim:#d8f0ec;
-  --rose:#c13a55;
-  --rose-dim:#fbdfe5;
-  --blue:#3a64c2;
-  --blue-dim:#dde6f9;
-  --radius:10px;
-  color-scheme:light;
-  font-size:16px;
-}
-*{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'IBM Plex Sans',sans-serif;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-}
-.page{max-width:1180px;margin:0 auto;padding:28px 20px 60px;}
+:root{color-scheme:light;--bg:#faf7fb;--card:#fff;--ink:#241a2e;--mut:#6b6275;--p:#5b2a86;--s:#d6336c;--ln:#e4dcea;--ok:#1f8a4c;--bad:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:28px 18px 8px;max-width:960px;margin:auto}
+h1{font:700 clamp(2rem,6vw,3.2rem)/1 Georgia,serif;margin:0;color:var(--p);letter-spacing:-.02em}
+header p{margin:6px 0 0;color:var(--mut)}
+nav{display:flex;gap:6px;overflow-x:auto;max-width:960px;margin:14px auto;padding:0 18px}
+nav button{flex:none;border:1.5px solid var(--ln);background:var(--card);color:var(--ink);padding:9px 15px;border-radius:99px;font:600 .9rem inherit;cursor:pointer}
+nav button[aria-selected=true]{background:var(--p);border-color:var(--p);color:#fff}
+button:focus-visible,input:focus-visible{outline:3px solid var(--s);outline-offset:2px}
+main{max-width:960px;margin:auto;padding:0 18px 30px}
+section{display:none}section.on{display:block}
+h2{font:700 1.5rem Georgia,serif;margin:8px 0 12px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:16px;margin-bottom:12px}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.grid .card{margin:0;border-left:5px solid var(--s)}
+.grid b{color:var(--p)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{border:1.5px solid var(--ln);background:var(--card);color:var(--ink);border-radius:99px;padding:5px 12px;cursor:pointer;font:.85rem inherit}
+.chip.on{background:var(--s);border-color:var(--s);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+.sc{overflow-x:auto}
+td,th{padding:9px 8px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}
+th{color:var(--p)}
+td:first-child{font-weight:700;white-space:nowrap}
+.tree{display:flex;flex-direction:column;align-items:center;gap:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.node{border:2px solid var(--p);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:10px;cursor:pointer;font:600 .95rem inherit}
+.node.on{background:var(--p);color:#fff}
+.note{background:var(--bg);border:1px dashed var(--p);border-radius:10px;padding:12px;margin-top:10px;min-height:48px}
+.tl{display:flex;overflow-x:auto;gap:0;padding:10px 0;border-top:3px solid var(--p);margin-top:10px}
+.tl button{flex:1 0 130px;background:none;border:0;color:var(--ink);cursor:pointer;padding:12px 6px 0;position:relative;font:.85rem inherit}
+.tl button:before{content:"";position:absolute;top:-17px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--s);border:3px solid var(--bg)}
+.tl button.on{font-weight:700;color:var(--p)}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.steps button{flex:1 0 130px;padding:12px;border:2px solid var(--ln);background:var(--card);color:var(--ink);cursor:pointer;border-radius:10px;font:inherit}
+.steps button.on{border-color:var(--s);background:var(--s);color:#fff}
+.map{display:grid;grid-template-columns:240px 1fr;gap:14px}
+.list{max-height:60vh;overflow:auto;display:flex;flex-direction:column;gap:3px}
+.list h4{margin:10px 0 2px;color:var(--p);font-size:.85rem}
+.list button{text-align:left;border:0;background:none;color:var(--ink);padding:6px 8px;border-radius:7px;cursor:pointer;font:.92rem inherit}
+.list button.on{background:var(--p);color:#fff}
+.view{position:sticky;top:8px;align-self:start;min-height:140px}
+.view h3{margin:0 0 6px;color:var(--s);font:700 1.3rem Georgia,serif}
+@media(max-width:640px){.map{grid-template-columns:1fr}.view{order:-1}.list{max-height:34vh}}
+.fc{perspective:900px;height:220px;cursor:pointer;margin:10px 0}
+.fi{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.f .fi{transform:rotateY(180deg)}
+.fa,.fb{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:1.15rem;overflow:auto}
+.fa{background:var(--p);color:#fff;font:700 1.4rem Georgia,serif}
+.fb{background:var(--card);border:2px solid var(--s);transform:rotateY(180deg)}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:0;background:var(--p);color:#fff;padding:10px 18px;border-radius:10px;font:600 .95rem inherit;cursor:pointer}
+.btn.g{background:var(--card);color:var(--ink);border:1.5px solid var(--ln)}
+.opt{display:block;width:100%;text-align:left;margin:7px 0;padding:11px 14px;border:1.5px solid var(--ln);border-radius:10px;background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card))}
+.opt.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 18%,var(--card))}
+.prog{height:6px;background:var(--ln);border-radius:9px;overflow:hidden;margin-bottom:10px}.prog i{display:block;height:100%;background:var(--s);width:0;transition:width .3s}
+input[type=search]{width:100%;padding:10px 12px;border:1.5px solid var(--ln);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+footer{text-align:center;color:var(--mut);padding:20px;font-size:.85rem;border-top:1px solid var(--ln);max-width:960px;margin:auto}
+@media(prefers-reduced-motion:reduce){.fi{transition:none}}
+.mmbar{display:flex;gap:6px;margin-bottom:8px}.mm ul{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--ln)}.mm>ul{padding-left:0;border:0}.mm li{margin:4px 0}.mm .nb{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:1.5px solid var(--ln);background:var(--card);color:var(--ink);border-radius:9px;padding:7px 10px;font:600 .93rem inherit;cursor:pointer}.mm .nb.p{border-color:var(--p)}.mm .nb .ar{flex:none;width:1em;color:var(--s);transition:transform .15s}.mm li.open>.nb .ar{transform:rotate(90deg)}.mm .l1>.nb{background:var(--p);color:#fff;border-color:var(--p)}.mm .l1>.nb .ar{color:#fff}.mm .l2>.nb{border-color:var(--p);font-size:1rem}.mm .rel{font:600 .68rem inherit;color:var(--s);background:var(--bg);border-radius:99px;padding:1px 8px;margin-left:auto;white-space:nowrap}.mm .l1>.nb .rel{background:#fff3}.mm .dt{font:400 .85rem inherit;color:var(--mut);margin:2px 0 0 10px}.mm li:not(.open)>ul{display:none}.mm .lf>.nb{cursor:default;font-weight:500}.mmh{font:700 1.1rem Georgia,serif;margin:16px 0 8px;color:var(--p)}#mr div{padding:5px 0;border-bottom:1px solid var(--ln);font-size:.92rem}#mr div:last-child{border:0}#mr b{color:var(--p)}#mr i{color:var(--s);font-style:normal;font-weight:700}
+.fc{height:clamp(320px,62vh,460px)}.fa{font:700 1.15rem/1.4 Georgia,serif}.fb{display:block;text-align:left;font-size:.95rem}.fb .tg{font:700 .72rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--s);margin-top:8px}.fb .tg:first-child{margin-top:0}.bt{white-space:pre-line}.bt.ex{color:var(--mut)}.fa{white-space:pre-line}
+.qsum{margin-top:16px;border-collapse:collapse;width:100%;max-width:320px}.qsum th,.qsum td{border:1px solid var(--ln);padding:6px 10px;text-align:left}
+</style><style>
+:root{--bg:#f3f5f9;--card:#fff;--ink:#1c2433;--mut:#5d6778;--p:#1b3a6b;--s:#8c1d2f;--ln:#d3d9e4;--ok:#1d7a45;--bad:#b3261e}
+body{font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.6}
+header{max-width:960px;border-bottom:3px double var(--p);padding-bottom:14px;margin-bottom:0}
+h1{font-size:clamp(2rem,6vw,2.8rem);letter-spacing:0}
+header p{font-style:italic}
+nav{gap:0;border-bottom:1px solid var(--ln);margin:0 auto 18px;padding:0 18px;max-width:960px}
+nav button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;color:var(--mut);padding:12px 16px;font-family:inherit;font-size:.95rem}
+nav button[aria-selected=true]{background:none;color:var(--p);border-bottom-color:var(--s)}
+h2{font-size:1.6rem;color:var(--p);border-bottom:1px solid var(--ln);padding-bottom:6px;margin-bottom:16px}
+.card,.note,.node,.chip,.opt,.btn,.steps button,input[type=search]{border-radius:4px}
+.card{box-shadow:0 1px 0 var(--ln)}
+.grid .card{border-left:4px solid var(--p);counter-increment:r}
+.grid .card:before{content:"Key point " counter(r);display:block;font:700 .78rem system-ui,sans-serif;color:var(--s);margin-bottom:3px}
+.grid{counter-reset:r}
+.grid .card b{display:none}
+th{background:var(--p);color:#fff;font-family:system-ui,sans-serif;font-size:.85rem}
+tr:nth-child(even) td{background:color-mix(in srgb,var(--p) 4%,var(--card))}
+td:first-child{color:var(--p)}
+.chip.on{background:var(--p);border-color:var(--p)}
+.node.on,.steps button.on{background:var(--p);border-color:var(--p)}
+.note{border:1px solid var(--ln);border-left:4px solid var(--s);background:var(--card)}
+.tl button:before{background:var(--s);border-radius:2px;transform:rotate(45deg)}
+.list button.on{background:var(--p)}
+.view h3{color:var(--p)}
+.fa{background:var(--p);border-radius:6px;border-bottom:6px solid var(--s)}
+.fb{border-radius:6px;border:1px solid var(--ln);border-top:6px solid var(--s);background:repeating-linear-gradient(var(--card),var(--card) 31px,var(--ln) 32px)}
+.btn{background:var(--p)}.btn.g{background:var(--card)}
+#qz .card{counter-reset:o}
+.opt{counter-increment:o;font-family:inherit}
+.opt:before{content:counter(o,upper-alpha) ".  ";font-weight:700;color:var(--p)}
+.prog i{background:var(--s)}
+footer{font-family:system-ui,sans-serif}
+.lv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 14px}
+.lvb{display:flex;flex-direction:column;gap:2px;align-items:flex-start;text-align:left;padding:12px 14px;border:1.5px solid var(--ln);border-left:5px solid var(--s);border-radius:4px;background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+.lvb b{color:var(--p);font-size:1rem}.lvb span{font:.8rem system-ui,sans-serif;color:var(--mut)}
+.lvb.on{background:var(--p);border-color:var(--p);border-left-color:var(--s)}.lvb.on b,.lvb.on span{color:#fff}
+@media(max-width:520px){.lv{grid-template-columns:1fr}}
+.ct{display:inline-block;margin:0 0 12px;padding:10px 22px;border:2px solid var(--p);border-bottom:4px solid var(--s);border-radius:6px;background:var(--card);color:var(--ink);font:700 1.15rem system-ui,sans-serif}.ct b{color:var(--s);font-size:1.25rem;margin-inline-start:6px;letter-spacing:.02em}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 18px}header .ct{margin:0;padding:8px 18px;font-size:1.05rem}header .ct b{font-size:1.2rem}
+a.ct{display:inline-flex;align-items:center;gap:8px;text-decoration:none}a.ct svg{flex:none}
+.ovw .card{margin-bottom:14px}.ovw h3{margin:0 0 8px;color:var(--p);font:700 1.2rem Georgia,serif;border-bottom:2px solid var(--s);padding-bottom:4px}
+.ovw h4{margin:14px 0 4px;color:var(--s);font:700 .95rem system-ui,sans-serif}.ovw .sub{margin:10px 0 2px;font:700 .85rem system-ui,sans-serif;color:var(--mut)}
+.ovw ul,.ovw ol{margin:4px 0;padding-inline-start:22px}.ovw li{margin:4px 0}.ovw p{margin:6px 0}
+.ovw td:first-child{white-space:normal}.ovw .card:before{content:none}
+</style><style>
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;margin:0 0 12px;color:var(--mut)}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.dg .dh{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}.dg .dh h3{margin:0;color:var(--p);font:700 1.2rem Georgia,serif}
+.bdg{background:var(--bg);border:1px solid var(--ln);border-radius:99px;padding:2px 10px;font-size:.75rem;color:var(--mut)}
+.pp{margin:6px 0;color:var(--ink)}.src{font-size:.8rem;color:var(--mut);margin:0 0 8px}
+.bar2{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.cv{overflow:auto;border:1px solid var(--ln);border-radius:10px;padding:12px;max-height:70vh;background:var(--bg);font-size:16px}
+.cv ul{list-style:none;margin:6px 0 0 11px;padding:0 0 0 1.4em;border-left:2px solid var(--ln)}.cv li{position:relative;margin:7px 0}
+.cv li:before{content:"";position:absolute;left:-1.4em;top:1.05em;width:1.1em;border-top:2px solid var(--ln)}
+.cv li.cl>ul{display:none}.nr{display:flex;align-items:center;gap:6px}
+.tg{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ln);background:var(--card);color:var(--ink);cursor:pointer;padding:0;line-height:1}
+.nd{border:2px solid var(--p);background:var(--card);color:var(--ink);border-radius:10px;padding:.5em .8em;font-family:inherit;font-weight:600;font-size:.9em;line-height:1.3;text-align:left;cursor:pointer;transition:box-shadow .15s}
+.r-m{background:var(--p);color:#fff}.r-b{border-color:var(--s)}.r-s{border-color:#1b6ca8}.r-r{border-color:var(--ok)}.r-w{border-color:var(--bad);background:#fdf0ee}
+.nd.rel{box-shadow:0 0 0 3px #f3b4cd}.nd.on{box-shadow:0 0 0 3px var(--s)}
+.sq{display:flex;flex-direction:column;align-items:flex-start;margin:8px 0 0 4px}.sq.h{flex-direction:row;align-items:flex-start}
+.it{display:flex;flex-direction:column;align-items:flex-start}.ar{display:flex;gap:8px;align-items:center;color:var(--s);padding:5px 10px;font-size:.85em}.sq.h .ar{flex-direction:column;padding:8px 4px;text-align:center;max-width:90px}
+.dt{background:var(--card);border:1px dashed var(--p);border-radius:10px;padding:12px;margin-top:10px;min-height:56px}.dt p{margin:4px 0}.dt ul{margin:4px 0;padding-left:20px}.rl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
+</style></head><body>
+<header><div><h1>Study Smart</h1><p>Introduction to Microbiology · revise, test, repeat</p></div><a class="ct" dir="ltr" href="https://t.me/Study_smart5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="#29A9EB" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Contact</span> <b dir="ltr">@Study_smart5</b></a></header>
+<nav role="tablist" id="nav"></nav>
+<main>
+<section id="s0"><h2>Overview</h2><div id="ov" class="ovw">
+<div class="card"><h3>Core Idea</h3><p>Microbiology is the study of microscopic organisms. The lecture covers how microbes are studied (stains and microscopes), the history of the field, its pure and applied branches, and the core vocabulary of infection: types and stages of infection, pathogens, pathogenicity, virulence, toxins, and infection by normal bacterial flora.</p></div>
 
-/* ---------- Hero ---------- */
-.hero{
-  display:flex;
-  align-items:center;
-  gap:32px;
-  padding:34px 8px 26px;
-  border-bottom:1px solid var(--line);
-  flex-wrap:wrap;
-}
-.tiles{display:flex;gap:10px;flex-shrink:0;}
-.tile{
-  width:74px;height:74px;
-  background:linear-gradient(160deg,var(--card-hi),var(--card));
-  border:1px solid var(--line);
-  border-radius:8px;
-  font-family:'IBM Plex Mono',monospace;
-  display:flex;flex-direction:column;justify-content:space-between;
-  padding:6px 8px;
-  position:relative;
-  overflow:hidden;
-}
-.tile::after{
-  content:"";
-  position:absolute;left:0;bottom:0;right:0;height:3px;
-  background:var(--amber);
-}
-.tile .z{font-size:.6rem;color:var(--text-soft);}
-.tile .sym{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;text-align:center;color:var(--text);line-height:1;}
-.tile .mass{font-size:.6rem;color:var(--text-soft);text-align:right;}
-.hero-text h1{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:2.7rem;
-  margin:0 0 6px;
-  letter-spacing:-0.01em;
-}
-.hero-text p{
-  margin:0;
-  color:var(--text-soft);
-  font-size:1.02rem;
-  max-width:56ch;
-}
+<div class="card"><h3>Learning Points</h3><ul>
+<li>Microscopic organisms are <b>unicellular</b>, a <b>cell cluster</b>, or <b>acellular</b>, and must be viewed with a <b>microscope or electron microscope</b>.</li>
+<li>The <b>microbiological procedure</b> has two routes: <b>stains</b> (basic simple, basic compound) and <b>microscopes</b> (EM, light).</li>
+<li>History has an <b>Ancient</b> period (before the microscope) and a <b>Modern</b> period (after its invention): Hooke, Leeuwenhoek, Pasteur, Cohn, Koch.</li>
+<li>Branches are <b>pure</b> (taxonomic and integrative arrangements) and <b>applied</b> (practical benefits).</li>
+<li>Infection is classified by order, duration, spread, and number of pathogens.</li>
+<li>Stages of infection: <b>incubation, prodromal, invasion, convalescent</b>.</li>
+<li>Key pathogen terms: <b>pathogen, pathogenicity, true vs opportunistic, pathologic, virulence, virulence factor, toxigenicity</b>.</li>
+<li>Normal flora can act as potential pathogens; infection <b>rarely</b> leads to infectious disease, and host defenses are the most important factor in the outcome.</li></ul></div>
 
-/* ---------- Tabs ---------- */
-.tabs{
-  display:flex;
-  gap:4px;
-  margin:26px 0 0;
-  border-bottom:1px solid var(--line);
-  overflow-x:auto;
-}
-.tab-btn{
-  background:none;border:none;
-  color:var(--text-soft);
-  font-family:'IBM Plex Sans',sans-serif;
-  font-size:.94rem;
-  font-weight:600;
-  padding:12px 18px;
-  cursor:pointer;
-  position:relative;
-  white-space:nowrap;
-  border-bottom:2px solid transparent;
-  transition:color .15s;
-}
-.tab-btn:hover{color:var(--text);}
-.tab-btn.active{color:var(--amber);border-bottom-color:var(--amber);}
+<div class="card"><h3>Key Definitions</h3><ul>
+<li><b>Microbiology:</b> from Greek <i>mikros</i> (“small”), <i>bios</i> (“life”), <i>-logia</i> (study). The study of microscopic organisms, defined as any living organism that is either a single cell (unicellular), a cell cluster, or has no cells at all (acellular), and must be viewed with the aid of a microscope or electron microscope.</li>
+<li><b>Microbiologist:</b> a specialist in microbiology.</li>
+<li><b>Infection:</b> the entry, establishment, and multiplication of pathogenic organisms within a host.</li>
+<li><b>Infectious disease:</b> the state of damage or toxicity in the body caused by an infectious agent.</li>
+<li><b>Portal of entry:</b> route of entry for an infectious agent; typically a cutaneous or membranous route.</li>
+<li><b>Pathogen:</b> any agent (usually a virus, bacterium, fungus, protozoan, or helminth) that causes a disease.</li>
+<li><b>Pathogenicity:</b> the capacity of microbes to cause a disease or infection.</li>
+<li><b>Pathologic:</b> capable of inducing physical damage to the host.</li>
+<li><b>Virulence:</b> in infection, the relative capacity of a pathogen to invade and harm host cells.</li>
+<li><b>Virulence factor:</b> a microbe’s structures or capabilities that allow it to establish itself in a host and cause damage.</li>
+<li><b>Toxigenicity:</b> the tendency of a pathogen to produce toxins.</li></ul></div>
 
-.tab-panel{display:none;padding-top:30px;animation:fade .25s ease;}
-.tab-panel.active{display:block;}
-@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+<div class="card"><h3>Classification / Types</h3>
+<h4>1. Microbiological procedure</h4><ul>
+<li><b>Stains:</b> Basic simple; Basic compound</li>
+<li><b>Microscope:</b> EM (electron microscope); Light</li></ul>
+<h4>2. Historical view</h4><ul>
+<li><b>Ancient</b> (before the discovery of the microscope): the existence of microorganisms was hypothesized for many centuries.</li>
+<li><b>Modern</b> (after the microscope invention).</li></ul>
+<h4>3. Branches of microbiology: pure and applied</h4>
+<p class="sub">Pure microbiology: taxonomic arrangement</p><ul>
+<li><b>Bacteriology:</b> bacteria</li><li><b>Mycology:</b> fungi</li><li><b>Protozoology:</b> protozoa</li><li><b>Phycology (algology):</b> algae</li><li><b>Parasitology:</b> parasites</li><li><b>Immunology:</b> the immune system</li><li><b>Virology:</b> viruses</li><li><b>Nematology:</b> nematodes</li></ul>
+<p class="sub">Pure microbiology: integrative arrangement</p><ul>
+<li><b>Microbial cytology:</b> microscopic and submicroscopic details of microorganisms.</li>
+<li><b>Microbial physiology:</b> how the microbial cell functions biochemically; includes microbial growth, metabolism, and cell structure.</li>
+<li><b>Microbial ecology:</b> the relationship between microorganisms and their environment.</li>
+<li><b>Microbial genetics:</b> how genes are organized and regulated in microbes in relation to their cellular functions.</li></ul>
+<p class="sub">Applied microbiology</p><ul><li>Practical benefits (see Examples).</li></ul>
+<h4>4. Types of infection</h4><ul>
+<li><b>Primary:</b> an initial infection in a previously healthy individual, later complicated by an additional (secondary) infection.</li>
+<li><b>Secondary:</b> an infection that compounds a preexisting one.</li>
+<li><b>Acute:</b> rapid onset and short duration.</li>
+<li><b>Chronic:</b> any process or disease that persists over a long duration.</li>
+<li><b>Localized:</b> a microbe enters a specific tissue, infects it, and remains confined there.</li>
+<li><b>Systemic:</b> invades many compartments and organs via the circulation; occurs throughout the body.</li>
+<li><b>Focal:</b> an infectious agent breaks loose from a localized infection and is carried by the circulation to other tissues.</li>
+<li><b>Mixed (also known as synergistic):</b> several different pathogens interact simultaneously to produce an infection.</li></ul>
+<h4>5. Types of pathogens</h4><ul>
+<li><b>True (primary) pathogens:</b> microbes capable of causing infection and disease in healthy persons with normal immune defenses.</li>
+<li><b>Opportunistic pathogens:</b> cause disease when the host’s defenses are compromised, or when they become established in a part of the body that is natural to them.</li></ul>
+<h4>6. Toxin-related conditions</h4><ul>
+<li><b>Toxinoses:</b> disease whose adverse effects are primarily due to production and release of toxins.</li>
+<li><b>Toximias</b> (toxin + blood): a toxin (microbial or otherwise) is spread throughout the bloodstream.</li>
+<li><b>Intoxications</b> (botulism): caused by ingestion of toxins.</li></ul></div>
 
-h2.panel-title{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:1.6rem;
-  margin:0 0 6px;
-}
-p.panel-sub{color:var(--text-soft);margin:0 0 26px;font-size:.95rem;max-width:64ch;}
+<div class="card"><h3>Important Concepts</h3><ul>
+<li><b>Infection and its outcome:</b> infection does not necessarily lead to infectious disease; in fact, it probably rarely does. The outcome depends on (1) route of entry, (2) number of infectious bacteria, and (3) status of the host defenses (most importantly).</li>
+<li><b>Normal flora as potential pathogens:</b> in humans, some normal bacterial flora (<i>Staphylococcus aureus</i>, <i>Streptococcus pneumoniae</i>, <i>Haemophilus influenzae</i>) live in a commensal or parasitic relationship without producing disease. They do not cause disease unless an opportunity is brought on by some compromise or weakness in the host’s anatomical barriers, tissue resistance, or immunity.</li>
+<li><b>Transmission:</b> these bacteria can be transmitted from one host to another, giving them additional opportunities to colonize or infect.</li>
+<li><b>Endogenous bacterial disease:</b> when a member of the normal flora causes an infectious disease; a disease brought on by bacteria “from within”.</li>
+<li><b>Where bacteria are found:</b> the normal flora, as well as any “contaminating” bacteria from the environment, are found on the body surfaces; the blood and internal tissues are sterile.</li>
+<li><b>When infection occurs:</b> if a bacterium, whether or not a component of the normal flora, breaches one of these surfaces, an infection is said to have occurred.</li>
+<li><b>Primary then secondary:</b> a primary infection in a healthy person may later be complicated by a secondary infection that compounds it.</li></ul></div>
 
-/* ---------- Overview ---------- */
-.overview-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
-  gap:14px;
-}
-.law-card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:16px 18px;
-}
-.law-card .cat{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.68rem;
-  color:var(--amber);
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  margin-bottom:8px;
-  display:block;
-}
-.law-card p{margin:0;font-size:.92rem;color:var(--text);}
-.law-card p b{color:var(--teal);font-weight:600;}
+<div class="card"><h3>Important Differences</h3><div class="sc"><table><thead><tr><th>Concept</th><th>Difference</th></tr></thead><tbody>
+<tr><td>Pure vs Applied microbiology</td><td>Pure: taxonomic and integrative branches. Applied: practical benefits such as fermentation, antibiotics, and bioremediation.</td></tr>
+<tr><td>Taxonomic vs Integrative arrangement</td><td>Taxonomic: fields named by the organism group studied (bacteriology, mycology, etc.). Integrative: fields named by the aspect studied (cytology, physiology, ecology, genetics).</td></tr>
+<tr><td>Ancient vs Modern period</td><td>Ancient: before the microscope; microorganisms only hypothesized. Modern: after the microscope invention.</td></tr>
+<tr><td>Hooke vs Leeuwenhoek</td><td>Hooke (1660s): first observed microorganisms with a microscope, coined “cell”, observed fruiting bodies of molds. Leeuwenhoek: credited with observing the first bacteria.</td></tr>
+<tr><td>Primary vs Secondary infection</td><td>Primary: initial infection in a previously healthy individual. Secondary: compounds a preexisting infection.</td></tr>
+<tr><td>Acute vs Chronic</td><td>Acute: rapid onset, short duration. Chronic: persists over a long duration.</td></tr>
+<tr><td>Localized vs Focal vs Systemic</td><td>Localized: confined to one tissue. Focal: agent breaks loose from a localized infection and is carried by circulation to other tissues. Systemic: invades many compartments and organs via circulation, throughout the body.</td></tr>
+<tr><td>True vs Opportunistic pathogens</td><td>True: cause disease in healthy persons with normal immune defenses. Opportunistic: cause disease when defenses are compromised or when established in a part of the body natural to them.</td></tr>
+<tr><td>Pathogenicity vs Virulence vs Virulence factor</td><td>Pathogenicity: capacity to cause disease or infection. Virulence: relative capacity to invade and harm host cells. Virulence factor: structures or capabilities that let the microbe establish itself and cause damage.</td></tr>
+<tr><td>Toxinoses vs Toximias vs Intoxications</td><td>Toxinoses: disease mainly due to toxin production and release. Toximias: toxin spread throughout the bloodstream. Intoxications: caused by ingestion of toxins (botulism).</td></tr>
+<tr><td>Infection vs Infectious disease</td><td>Infection: entry, establishment, and multiplication in a host. Infectious disease: the resulting state of damage or toxicity. Infection probably rarely leads to infectious disease.</td></tr>
+</tbody></table></div></div>
 
-/* ---------- Diagrams ---------- */
-.diagram-block{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:22px;
-  margin-bottom:22px;
-}
-.diagram-block h3{
-  font-family:'Fraunces',serif;
-  font-size:1.15rem;
-  font-weight:600;
-  margin:0 0 4px;
-}
-.diagram-block .hint{color:var(--text-soft);font-size:.85rem;margin:0 0 16px;}
-.diagram-flex{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;}
-.diagram-info{
-  flex:1;min-width:230px;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:8px;
-  padding:14px 16px;
-  font-size:.88rem;
-  min-height:90px;
-}
-.diagram-info .lead{color:var(--amber);font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:.78rem;display:block;margin-bottom:6px;}
-svg text{font-family:'IBM Plex Sans',sans-serif;}
-.clickable{cursor:pointer;transition:opacity .15s;}
-.clickable:hover{opacity:.75;}
+<div class="card"><h3>Processes / Stages</h3>
+<h4>Stages of infection (in order)</h4><ol>
+<li><b>Incubation period:</b> from the initial contact with an infectious agent to the appearance of the first symptoms.</li>
+<li><b>Prodromal stage:</b> a short period of mild symptoms at the end of the period of incubation; indicates the onset of disease.</li>
+<li><b>Period of invasion:</b> during a clinical infection, the agent multiplies at high levels, exhibits its greatest toxicity, and becomes well established in the target tissues.</li>
+<li><b>Convalescent period:</b> recovery; the period between the end of the disease and the complete restoration of health in a patient.</li></ol>
+<h4>Historical sequence</h4><p>Ancient period (hypothesized existence) → Modern period (after the microscope): Hooke (1660s) → Leeuwenhoek (1632–1723) → Pasteur (1822–1895) → Cohn (1828–1898) → Koch (1843–1910).</p></div>
 
-.pt-row{display:flex;gap:8px;flex-wrap:wrap;}
-.pt-cell{
-  width:64px;height:64px;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:6px;
-  font-family:'IBM Plex Mono',monospace;
-  display:flex;flex-direction:column;justify-content:space-between;
-  padding:5px 7px;cursor:pointer;
-  transition:transform .12s, border-color .12s;
-}
-.pt-cell:hover{transform:translateY(-3px);border-color:var(--amber);}
-.pt-cell.sel{border-color:var(--amber);background:var(--amber-dim);}
-.pt-cell .zz{font-size:.55rem;color:var(--text-soft);}
-.pt-cell .ss{font-family:'Fraunces',serif;font-size:1.15rem;text-align:center;}
+<div class="card"><h3>Important Scientists / Discoveries</h3><div class="sc"><table><thead><tr><th>Scientist</th><th>Dates</th><th>Contribution</th></tr></thead><tbody>
+<tr><td>Robert Hooke</td><td>1660s</td><td>Observed microorganisms for the first time with a microscope and coined the term <b>“cell”</b>. Observed the <b>fruiting bodies of molds</b>.</td></tr>
+<tr><td>Anton van Leeuwenhoek</td><td>1632–1723</td><td>Dutch scientist credited with having observed the <b>first bacteria</b>. One of his books contains a chapter in Latin, which reads in translation “Concerning the wonderful structure of things in nature”, investigated by microscope.</td></tr>
+<tr><td>Louis Pasteur</td><td>1822–1895</td><td>Defined <b>pasteurization</b> to prevent spoilage of food by bacteria. Defined <b>Germ Theory</b> and demonstrated that germs were responsible for disease.</td></tr>
+<tr><td>Ferdinand Cohn</td><td>1828–1898</td><td>Developed the <b>first classification scheme based on bacteria shape</b>. Detailed and described the <b>life cycle of <i>Bacillus</i></b>.</td></tr>
+<tr><td>Robert Koch</td><td>1843–1910</td><td>Identified <b>anthrax</b> and developed <b>agar growth medium</b>. <b>Koch’s postulates</b> were a systematic method to establish the microbial cause of disease.</td></tr>
+</tbody></table></div></div>
 
-.aufbau-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
-.aufbau-el{
-  padding:6px 10px;border:1px solid var(--line);border-radius:6px;
-  background:var(--card);cursor:pointer;font-size:.8rem;font-family:'IBM Plex Mono',monospace;
-}
-.aufbau-el:hover{border-color:var(--teal);}
-.orbital-boxes{display:flex;gap:5px;flex-wrap:wrap;}
-.orbital-boxes .ob{
-  width:34px;height:30px;border:1px solid var(--line);border-radius:4px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.75rem;background:var(--bg-alt);color:var(--text-soft);
-}
-.orbital-boxes .ob.filled{background:var(--teal-dim);color:var(--teal);border-color:var(--teal);}
+<div class="card"><h3>Examples</h3>
+<h4>Benefits of applied microbiology</h4><ul>
+<li><b>Industrial fermentation:</b> e.g. production of alcohol, vinegar (<i>Acetobacteraceae</i>), and dairy products.</li>
+<li><b>Antibiotic production:</b> the beta-lactam antibacterials, which include the <b>penicillins</b> (produced by fungi in the genus <i>Penicillium</i>) and the <b>cephalosporins</b>.</li>
+<li><b>Vehicles for cloning</b> in more complex organisms such as plants.</li>
+<li><b>Biotechnological production of important enzymes</b> such as <i>Taq</i> polymerase; <b>reporter genes</b> for use in other genetic systems; <b>novel molecular biology techniques</b> such as the <b>yeast two-hybrid system</b>.</li>
+<li><b>Biosynthesis</b> of xanthan, alginate, and cellulose.</li>
+<li><b>Microbial biodegradation or bioremediation</b> of domestic, agricultural, and industrial wastes and subsurface pollution in soils, sediments, and marine environments.</li>
+<li><b>Probiotics</b> (bacteria potentially beneficial to the digestive system) and/or <b>prebiotics</b>: various claims concern their contributions to human and animal health.</li></ul>
+<h4>Other examples</h4><ul>
+<li><b>Normal flora that are potential pathogens:</b> <i>Staphylococcus aureus</i>, <i>Streptococcus pneumoniae</i>, <i>Haemophilus influenzae</i>.</li>
+<li><b>Intoxication:</b> botulism.</li>
+<li><b>Classic opportunistic infections in humans:</b> dental caries and periodontal disease caused by normal flora of the oral cavity.</li></ul></div>
 
-.water-btn{
-  background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue);
-  padding:10px 18px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.85rem;
-}
-.water-btn:hover{background:var(--blue);color:#ffffff;}
-#water-eq{
-  margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:.95rem;
-  color:var(--teal);opacity:0;transition:opacity .3s;
-}
-#water-eq.show{opacity:1;}
+<div class="card"><h3>Clinical / Practical Importance</h3><ul>
+<li>Members of the normal flora can cause endogenous bacterial disease when the host’s anatomical barriers, tissue resistance, or immunity are compromised.</li>
+<li>Dental caries and periodontal disease are classic opportunistic infections caused by normal flora of the oral cavity.</li>
+<li>Normal flora bacteria can be transmitted from one host to another, giving additional opportunities to colonize or infect.</li>
+<li>Toxin-related conditions differ in mechanism: toxinoses (toxin production and release), toximias (toxin in the bloodstream), intoxications such as botulism (ingested toxin).</li>
+<li>Outcome of infection depends on route of entry, number of infectious bacteria, and, most importantly, the status of the host defenses.</li>
+<li>Applied microbiology provides antibiotics (penicillins, cephalosporins), enzymes (<i>Taq</i> polymerase), fermentation products, bioremediation, and probiotics/prebiotics.</li>
+<li>Pasteurization prevents spoilage of food by bacteria.</li></ul></div>
 
-.ion-toggle{display:flex;gap:8px;margin-bottom:16px;}
-.ion-btn{
-  padding:8px 14px;border-radius:6px;border:1px solid var(--line);
-  background:var(--card);color:var(--text-soft);cursor:pointer;font-size:.82rem;font-weight:600;
-}
-.ion-btn.active{border-color:var(--rose);color:var(--rose);background:var(--rose-dim);}
-.ion-circle-wrap{display:flex;align-items:center;gap:34px;}
-.ion-circle{
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, var(--card-hi), var(--card));
-  border:2px solid var(--teal);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
-  transition:width .3s, height .3s;
-}
-
-.window-bar{position:relative;height:34px;border-radius:6px;overflow:hidden;display:flex;margin-bottom:10px;}
-.window-seg{cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-family:'IBM Plex Mono',monospace;color:#0e1420;font-weight:600;transition:filter .15s;}
-.window-seg:hover{filter:brightness(1.12);}
-
-/* ---------- Mini map ---------- */
-.map-wrap{display:grid;grid-template-columns:280px 1fr;gap:20px;}
-@media(max-width:760px){.map-wrap{grid-template-columns:1fr;}}
-.map-list{
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:8px;max-height:520px;overflow-y:auto;
-}
-.map-item{
-  display:block;width:100%;text-align:left;background:none;border:none;
-  color:var(--text-soft);padding:10px 12px;border-radius:6px;cursor:pointer;
-  font-size:.87rem;font-family:'IBM Plex Sans',sans-serif;
-}
-.map-item:hover{background:var(--card);color:var(--text);}
-.map-item.active{background:var(--amber-dim);color:var(--amber);font-weight:600;}
-.map-display{
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:24px;min-height:420px;
-}
-.map-display h3{
-  font-family:'Fraunces',serif;font-size:1.3rem;margin:0 0 14px;color:var(--amber);
-}
-.map-display p{font-size:.94rem;color:var(--text);margin:0 0 10px;}
-.map-display .placeholder{color:var(--text-soft);font-size:.9rem;}
-
-/* ---------- Difficulty level tabs (Flash Cards & Quiz Bank) ---------- */
-.lvl-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.lvl-btn{
-  padding:8px 16px;border-radius:20px;border:1px solid var(--line);
-  background:var(--card);color:var(--text-soft);font-size:.82rem;cursor:pointer;font-weight:700;
-  font-family:'IBM Plex Sans',sans-serif;
-}
-.lvl-btn[data-lvl="1"].active{background:var(--teal-dim);border-color:var(--teal);color:var(--teal);}
-.lvl-btn[data-lvl="2"].active{background:var(--amber-dim);border-color:var(--amber);color:var(--amber);}
-.lvl-btn[data-lvl="3"].active{background:var(--rose-dim);border-color:var(--rose);color:var(--rose);}
-.lvl-count{color:var(--text-soft);font-size:.8rem;margin:0 0 18px;font-family:'IBM Plex Mono',monospace;}
-
-/* ---------- Flash cards ---------- */
-.fc-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
-.fc-chip{
-  padding:6px 13px;border-radius:20px;border:1px solid var(--line);
-  background:var(--card);color:var(--text-soft);font-size:.78rem;cursor:pointer;font-weight:600;
-}
-.fc-chip.active{background:var(--teal-dim);border-color:var(--teal);color:var(--teal);}
-.fc-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;
-}
-.fc-card{
-  perspective:1000px;height:150px;cursor:pointer;
-}
-.fc-inner{
-  position:relative;width:100%;height:100%;transition:transform .5s;
-  transform-style:preserve-3d;
-}
-.fc-card.flip .fc-inner{transform:rotateY(180deg);}
-.fc-face{
-  position:absolute;inset:0;backface-visibility:hidden;
-  border-radius:var(--radius);border:1px solid var(--line);
-  padding:16px;display:flex;flex-direction:column;justify-content:center;
-}
-.fc-front{background:var(--panel);}
-.fc-front .fc-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--amber);text-transform:uppercase;margin-bottom:8px;}
-.fc-front p{margin:0;font-size:.92rem;font-weight:600;}
-.fc-back{background:var(--teal-dim);transform:rotateY(180deg);}
-.fc-back p{margin:0;font-size:.86rem;color:var(--text);}
-
-/* ---------- Quiz ---------- */
-.quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
-.quiz-score{
-  font-family:'IBM Plex Mono',monospace;font-size:.85rem;
-  background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 14px;
-}
-.quiz-score b{color:var(--teal);}
-.q-block{
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:18px 20px;margin-bottom:14px;
-}
-.q-num{font-family:'IBM Plex Mono',monospace;color:var(--amber);font-size:.72rem;margin-bottom:6px;}
-.q-text{font-size:.98rem;font-weight:600;margin:0 0 12px;white-space:pre-line;}
-.q-options{display:flex;flex-direction:column;gap:8px;}
-.q-opt{
-  text-align:left;background:var(--card);border:1px solid var(--line);border-radius:7px;
-  padding:9px 13px;color:var(--text);cursor:pointer;font-size:.87rem;
-}
-.q-opt:hover{border-color:var(--blue);}
-.q-opt.correct{background:var(--teal-dim);border-color:var(--teal);color:var(--teal);}
-.q-opt.wrong{background:var(--rose-dim);border-color:var(--rose);color:var(--rose);}
-.q-opt[disabled]{cursor:default;}
-.reset-btn{
-  background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber);
-  padding:8px 16px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.82rem;
-}
-.reset-btn:hover{background:var(--amber);color:#ffffff;}
-
-/* ---------- Footer ---------- */
-footer{
-  margin-top:50px;padding-top:20px;border-top:1px solid var(--line);
-  text-align:center;color:var(--text-soft);font-size:.8rem;font-family:'IBM Plex Mono',monospace;
-}
-</style>
-</head>
-<body>
-<div class="page">
-
-  <div class="hero">
-    <div class="tiles">
-      <div class="tile"><span class="z">3</span><span class="sym">Li</span><span class="mass">6.94</span></div>
-      <div class="tile"><span class="z">11</span><span class="sym">Na</span><span class="mass">22.99</span></div>
-      <div class="tile"><span class="z">19</span><span class="sym">K</span><span class="mass">39.10</span></div>
-    </div>
-    <div class="hero-text">
-      <h1>Study Smart</h1>
-      <p>Alkali metals in inorganic pharmaceutical chemistry — the rules, the reactions, and the clinical facts about lithium, sodium and potassium, built for quick review.</p>
-    </div>
-  </div>
-
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="overview">Overview</button>
-    <button class="tab-btn" data-tab="diagrams">Diagrams</button>
-    <button class="tab-btn" data-tab="minimap">Mini Map</button>
-    <button class="tab-btn" data-tab="flashcards">Flash Cards</button>
-    <button class="tab-btn" data-tab="quiz">Quiz Bank</button>
-  </nav>
-
-  <!-- ============ OVERVIEW ============ -->
-  <section id="overview" class="tab-panel active">
-    <h2 class="panel-title">Overview</h2>
-    <p class="panel-sub">The core laws and facts of the topic, stripped to the point.</p>
-    <div class="overview-grid" id="overview-grid"></div>
-  </section>
-
-  <!-- ============ DIAGRAMS ============ -->
-  <section id="diagrams" class="tab-panel">
-    <h2 class="panel-title">Diagrams</h2>
-    <p class="panel-sub">Click on anything highlighted to explore it.</p>
-
-    <div class="diagram-block">
-      <h3>Atomic structure</h3>
-      <p class="hint">Click a particle to see what it does.</p>
-      <div class="diagram-flex">
-        <svg width="260" height="230" viewBox="0 0 260 230">
-          <circle cx="130" cy="120" r="95" fill="none" stroke="#d9d2c0" stroke-width="1"/>
-          <circle id="p-part" class="clickable" cx="118" cy="120" r="16" fill="#e2933f"/>
-          <text x="118" y="125" text-anchor="middle" fill="#12161d" font-size="12" font-weight="700" class="clickable" id="p-label">p+</text>
-          <circle id="n-part" class="clickable" cx="145" cy="128" r="16" fill="#6f97e0"/>
-          <text x="145" y="133" text-anchor="middle" fill="#12161d" font-size="12" font-weight="700" class="clickable" id="n-label">n</text>
-          <circle id="e-part" class="clickable" cx="215" cy="55" r="10" fill="#49b3a6"/>
-          <text x="215" y="59" text-anchor="middle" fill="#12161d" font-size="10" font-weight="700" class="clickable" id="e-label">e-</text>
-        </svg>
-        <div class="diagram-info" id="atom-info">
-          <span class="lead">Tap a particle</span>
-          Protons, neutrons and electrons each play a different role in the atom.
-        </div>
-      </div>
-    </div>
-
-    <div class="diagram-block">
-      <h3>Group 1 — the alkali metals</h3>
-      <p class="hint">Click an element for its configuration and one clinical fact.</p>
-      <div class="pt-row" id="pt-row"></div>
-      <div class="diagram-info" id="pt-info" style="margin-top:14px;">
-        <span class="lead">Select an element</span>
-        Every member of group 1 (except hydrogen) has one electron in its outer shell.
-      </div>
-    </div>
-
-    <div class="diagram-block">
-      <h3>Building an electron configuration</h3>
-      <p class="hint">Pick an element to fill its orbitals following the Aufbau order: 1s &lt; 2s &lt; 2p &lt; 3s &lt; 3p &lt; 4s.</p>
-      <div class="aufbau-row" id="aufbau-row"></div>
-      <div class="orbital-boxes" id="orbital-boxes"></div>
-      <div class="diagram-info" id="aufbau-info" style="margin-top:14px;">
-        <span class="lead">Configuration</span>
-        —
-      </div>
-    </div>
-
-    <div class="diagram-block">
-      <h3>Alkali metal + water</h3>
-      <p class="hint">Click to reveal the reaction.</p>
-      <button class="water-btn" id="water-btn">Drop lithium into water</button>
-      <div id="water-eq">2 Li (s) + 2 H₂O → 2 LiOH + H₂ (g) ↑ — the same pattern applies to Na and K, with reactivity increasing down the group.</div>
-    </div>
-
-    <div class="diagram-block">
-      <h3>Cation vs. anion size</h3>
-      <p class="hint">Toggle between the states of a sodium atom.</p>
-      <div class="ion-toggle" id="ion-toggle">
-        <button class="ion-btn active" data-state="atom">Na atom</button>
-        <button class="ion-btn" data-state="cation">Na⁺ (lost e⁻)</button>
-      </div>
-      <div class="ion-circle-wrap">
-        <div class="ion-circle" id="ion-circle" style="width:120px;height:120px;">Na</div>
-        <div class="diagram-info" id="ion-info">A cation is always smaller than the atom it came from; an anion is always larger.</div>
-      </div>
-    </div>
-
-    <div class="diagram-block">
-      <h3>Therapeutic windows: lithium &amp; potassium</h3>
-      <p class="hint">Click a zone of each bar to see what happens there.</p>
-      <p style="font-size:.82rem;color:var(--text-soft);margin:0 0 6px;">Lithium (plasma, mmol/L)</p>
-      <div class="window-bar" id="li-bar"></div>
-      <p style="font-size:.82rem;color:var(--text-soft);margin:14px 0 6px;">Potassium (plasma, mmol/L)</p>
-      <div class="window-bar" id="k-bar"></div>
-      <div class="diagram-info" id="window-info" style="margin-top:6px;">Select a zone above.</div>
-    </div>
-  </section>
-
-  <!-- ============ MINI MAP ============ -->
-  <section id="minimap" class="tab-panel">
-    <h2 class="panel-title">Mini Map</h2>
-    <p class="panel-sub">Click a title on the left — its text appears on the right, in this same section.</p>
-    <div class="map-wrap">
-      <div class="map-list" id="map-list"></div>
-      <div class="map-display" id="map-display">
-        <p class="placeholder">Choose a topic from the list to read it here.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FLASH CARDS ============ -->
-  <section id="flashcards" class="tab-panel">
-    <h2 class="panel-title">Flash Cards</h2>
-    <p class="panel-sub">Click a card to flip it. Choose a difficulty level.</p>
-    <div class="lvl-tabs" id="fc-lvl-tabs">
-      <button class="lvl-btn active" data-lvl="1">Level 1 — Easy (25)</button>
-      <button class="lvl-btn" data-lvl="2">Level 2 — Medium (15)</button>
-      <button class="lvl-btn" data-lvl="3">Level 3 — Hard (10)</button>
-    </div>
-    <div class="fc-grid" id="fc-grid"></div>
-  </section>
-
-  <!-- ============ QUIZ BANK ============ -->
-  <section id="quiz" class="tab-panel">
-    <h2 class="panel-title">Quiz Bank</h2>
-    <p class="panel-sub">Pick an answer for each question. Choose a difficulty level — options are shuffled whenever the quiz (re)loads.</p>
-    <div class="lvl-tabs" id="quiz-lvl-tabs">
-      <button class="lvl-btn active" data-lvl="1">Level 1 — Easy (25)</button>
-      <button class="lvl-btn" data-lvl="2">Level 2 — Medium (15)</button>
-      <button class="lvl-btn" data-lvl="3">Level 3 — Hard (10)</button>
-    </div>
-    <div class="quiz-top">
-      <div class="quiz-score">Score: <b id="score-val">0</b> / <span id="score-total">0</span></div>
-      <button class="reset-btn" id="quiz-reset">Reset quiz</button>
-    </div>
-    <div id="quiz-list"></div>
-  </section>
-
-  <footer>© Anmar Taha</footer>
+<div class="card"><h3>Exam Focus</h3><ul>
+<li>Greek origin of “microbiology” (<i>mikros</i>, <i>bios</i>, <i>-logia</i>) and the three forms of microscopic organisms (unicellular, cell cluster, acellular).</li>
+<li>The microbiological procedure chart: stains (basic simple, basic compound) and microscope (EM, light).</li>
+<li>Scientists, dates, and contributions: Hooke (“cell”, fruiting bodies of molds), Leeuwenhoek (first bacteria), Pasteur (pasteurization, Germ Theory), Cohn (shape-based classification, <i>Bacillus</i> life cycle), Koch (anthrax, agar, postulates).</li>
+<li>All <b>8 taxonomic branches</b> and the <b>4 integrative branches</b>, with what each studies.</li>
+<li>Benefits of applied microbiology: <i>Acetobacteraceae</i> (vinegar), beta-lactams (penicillins from <i>Penicillium</i>, cephalosporins), <i>Taq</i> polymerase, yeast two-hybrid system, xanthan/alginate/cellulose, bioremediation, probiotics.</li>
+<li>Infection types and their definitions, especially <b>localized vs focal vs systemic</b>, and <b>primary vs secondary</b>.</li>
+<li>The <b>4 stages of infection in order</b> with the defining feature of each.</li>
+<li><b>True vs opportunistic pathogens.</b></li>
+<li><b>Pathogenicity vs virulence vs virulence factor vs toxigenicity</b>, and <b>pathologic</b>.</li>
+<li><b>Toxinoses vs toximias vs intoxications</b> (botulism = ingestion).</li>
+<li>Endogenous bacterial disease = disease brought on by bacteria “from within”; the three named normal-flora bacteria; dental caries and periodontal disease.</li>
+<li>Normal flora and contaminants are on body surfaces; blood and internal tissues are <b>sterile</b>; breaching a surface = infection.</li>
+<li>Infection <b>rarely</b> leads to infectious disease; the <b>3 factors</b> affecting outcome (host defenses most important).</li></ul></div>
 </div>
-
+</section>
+<section id="s1"><h2>Interactive Diagrams</h2>
+<div class="legend"><span><i style="background:var(--p)"></i>Main concept</span><span><i style="background:var(--s)"></i>Branch / group</span><span><i style="background:#1b6ca8"></i>Stage / event</span><span><i style="background:var(--ok)"></i>Item / outcome</span><span><i style="background:var(--bad)"></i>Key warning / caution</span></div>
+<div id="dgs"></div></section>
+<section id="s2"><h2>Mini Map</h2><div class="mmbar"><button class="chip" id="mxa">Expand all</button><button class="chip" id="mca">Collapse all</button></div><div class="card mm" id="mm"></div><h3 class="mmh">Key Relationships</h3><div class="card" id="mr"></div></section>
+<section id="s3"><h2>Flash Cards</h2><div class="lv" id="fl"></div><div class="bar"><span id="fn"></span></div><div class="fc" id="fc" tabindex="0" role="button" aria-label="Flip card"><div class="fi"><div class="fa" id="fq"></div><div class="fb" id="fans"></div></div></div><div class="bar"><button class="btn g" id="fp">Previous</button><button class="btn" id="ff">Flip</button><button class="btn g" id="fx">Next</button><button class="btn g" id="fs">Shuffle</button></div></section>
+<section id="s4"><h2>Quiz Bank</h2><div class="lv" id="ql"></div><div id="qz"></div><table class="qsum"><thead><tr><th>Level</th><th>Questions</th></tr></thead><tbody><tr><td>Easy</td><td>25</td></tr><tr><td>Medium</td><td>15</td></tr><tr><td>Hard</td><td>10</td></tr><tr><td><b>Total</b></td><td><b>50</b></td></tr></tbody></table></section>
+</main>
 <script>
-/* ============ TAB SWITCHING ============ */
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-});
-
-/* ============ OVERVIEW DATA ============ */
-const laws = [
- {cat:"Atomic structure", html:"The nucleus holds <b>protons (+)</b> and <b>neutrons (0)</b>; electrons (−) sit in orbitals around it."},
- {cat:"Atomic structure", html:"<b>Atomic number</b> = number of protons. <b>Mass number</b> = protons + neutrons."},
- {cat:"Atomic structure", html:"In a neutral atom, <b>electrons = protons</b>."},
- {cat:"Electron configuration", html:"Orbitals fill in order: <b>1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p...</b> (Aufbau principle)."},
- {cat:"Electron configuration", html:"Max electrons: <b>s = 2, p = 6, d = 10, f = 14</b>."},
- {cat:"Electron configuration", html:"<b>Valence electrons</b> are the electrons in the outermost shell."},
- {cat:"Ionization", html:"Gaining an electron → <b>anion</b> (negative, larger than the atom). Losing an electron → <b>cation</b> (positive, smaller than the atom)."},
- {cat:"Periodic law", html:"Proposed independently (1868–1870) by <b>Mendeleeff</b> and <b>Lothar Meyer</b>: properties repeat periodically with increasing atomic number."},
- {cat:"Alkali metals", html:"Group 1 elements except hydrogen: <b>Li, Na, K, Rb, Cs, Fr</b> — all s-block, one valence electron, form <b>M⁺</b>."},
- {cat:"Alkali metals", html:"Silvery white except <b>caesium (golden yellow)</b>. Soft, and reactivity/softness <b>increase down the group</b>."},
- {cat:"Alkali metals", html:"React violently with water: <b>2M + 2H₂O → 2MOH + H₂↑</b>."},
- {cat:"Alkali metals", html:"Pure metals aren't used pharmaceutically (too reactive in water) — their <b>halides, oxides, carbonates, citrates and salts</b> are what matter medicinally."},
- {cat:"Lithium", html:"Lithium carbonate (<b>Li₂CO₃</b>) or lithium citrate treats <b>bipolar disorder and recurrent depression</b>, up to 30 mmol/day."},
- {cat:"Lithium", html:"Li₂CO₃ is preferred — <b>least stomach irritation</b>."},
- {cat:"Lithium", html:"Narrow therapeutic window: toxicity above <b>1.5 mmol/L</b> (tremor, renal impairment, convulsion); <b>&gt;2 mmol/L</b> = emergency, can be fatal."},
- {cat:"Lithium", html:"NSAIDs reduce lithium clearance; diuretics cause sodium loss — <b>both worsen lithium toxicity</b>."},
- {cat:"Sodium", html:"Na⁺ is the most abundant <b>extracellular</b> cation, over 90% of plasma/interstitial ions; kidneys regulate it via the nephron."},
- {cat:"Sodium", html:"The Na⁺/K⁺ pump builds the electrical potential needed for <b>nerve impulse transmission</b>."},
- {cat:"Sodium", html:"NaCl treats dehydration and sodium depletion; <b>sodium bicarbonate</b> corrects plasma pH (its active part is the bicarbonate anion)."},
- {cat:"Sodium", html:"Adult NaCl intake should stay under <b>6 g/day</b>. Low Na⁺ = hyponatremia; high Na⁺ = hypernatremia (linked to hypertension)."},
- {cat:"Potassium", html:"95% of body K⁺ is <b>inside cells</b>, 5% in plasma — balance kept by the Na⁺/K⁺ pump."},
- {cat:"Potassium", html:"<b>Hypokalemia</b>: low plasma K⁺ from GI loss (vomiting/diarrhea) or loop/thiazide diuretics; potassium-sparing diuretics avoid this."},
- {cat:"Potassium", html:"<b>KCl</b> is the preferred liquid potassium salt; supplement pills are capped near <b>100 mg K⁺</b> to protect the gastric mucosa."},
- {cat:"Potassium", html:"Normal plasma window: <b>3.5–5.0 mmol/L</b>. Severe hyperkalaemia (&gt;6.5 mmol/L or ECG change) can cause <b>cardiac arrest</b>."},
- {cat:"Potassium", html:"Hyperkalaemia treatment: <b>IV calcium gluconate</b> (protects heart), <b>IV insulin</b> (shifts K⁺ into cells), diuretics, dialysis, or ion-exchange resins."},
+const $=s=>document.querySelector(s),E=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const G={B:"Basics",K:"Methods & early history",H:"History",A:"Pure vs applied",T:"Branches",I:"Integrative",C:"Infection types",S:"Spread",P:"Pathogens",X:"Toxins",G:"Stages",F:"Benefits",N:"Bacterial infection"};
+const D=[
+["B","Microbiology","From Greek mikros (small), bios (life), -logia (study): the study of microscopic organisms. They may be unicellular, a cell cluster, or acellular (no cells), and must be viewed with a microscope or electron microscope."],
+["B","Microbiologist","A specialist in microbiology."],
+["H","Hooke (1660s)","First observed microorganisms with a microscope, coined the term “cell”, and observed the fruiting bodies of molds."],
+["H","Leeuwenhoek (1632–1723)","Dutch scientist credited with observing the first bacteria."],
+["H","Pasteur (1822–1895)","Defined pasteurization (prevents food spoilage by bacteria) and germ theory; showed germs cause disease."],
+["H","Cohn (1828–1898)","Developed the first classification scheme based on bacterial shape; described the life cycle of Bacillus."],
+["H","Koch (1843–1910)","Identified anthrax, developed agar growth medium; Koch’s postulates are a systematic method to establish the microbial cause of disease."],
+["T","Bacteriology","The study of bacteria."],["T","Mycology","The study of fungi."],["T","Protozoology","The study of protozoa."],["T","Phycology (algology)","The study of algae."],["T","Parasitology","The study of parasites."],["T","Immunology","The study of the immune system."],["T","Virology","The study of viruses."],["T","Nematology","The study of nematodes."],
+["I","Microbial cytology","Study of microscopic and submicroscopic details of microorganisms."],
+["I","Microbial physiology","How the microbial cell functions biochemically: growth, metabolism and cell structure."],
+["I","Microbial ecology","The relationship between microorganisms and their environment."],
+["I","Microbial genetics","How genes are organized and regulated in microbes in relation to cellular functions."],
+["C","Infection","Entry, establishment and multiplication of pathogenic organisms within a host."],
+["C","Primary infection","An initial infection in a previously healthy individual, later complicated by an additional (secondary) infection."],
+["C","Secondary infection","An infection that compounds a preexisting one."],
+["C","Acute infection","Rapid onset and short duration."],
+["C","Chronic infection","Any process or disease that persists over a long duration."],
+["S","Localized infection","A microbe enters a specific tissue, infects it and remains confined there."],
+["S","Systemic infection","Invades many compartments and organs via the circulation; occurs throughout the body."],
+["S","Focal infection","An infectious agent breaks loose from a localized infection and is carried by the circulation to other tissues."],
+["S","Mixed (synergistic) infection","Several different pathogens interact simultaneously to produce an infection."],
+["S","Portal of entry","Route of entry for an infectious agent; typically a cutaneous or membranous route."],
+["S","Infectious disease","The state of damage or toxicity in the body caused by an infectious agent."],
+["P","Pathogen","Any agent (usually virus, bacterium, fungus, protozoan or helminth) that causes disease."],
+["P","Pathogenicity","The capacity of microbes to cause disease or infection."],
+["P","True (primary) pathogen","A microbe able to cause infection and disease in healthy persons with normal immune defenses."],
+["P","Opportunistic pathogen","Causes disease when host defenses are compromised, or when established in a part of the body that is natural to it."],
+["P","Pathologic","Capable of inducing physical damage to the host."],
+["P","Virulence","The relative capacity of a pathogen to invade and harm host cells."],
+["P","Virulence factor","A microbe’s structures or capabilities that let it establish itself in a host and cause damage."],
+["X","Toxigenicity","The tendency of a pathogen to produce toxins."],
+["X","Toxinoses","Disease whose adverse effects are primarily due to production and release of toxins."],
+["X","Toximias (toxin + blood)","A toxin (microbial or otherwise) is spread throughout the bloodstream."],
+["X","Intoxications (botulism)","Caused by ingestion of toxins."],
+["G","Incubation period","From initial contact with an infectious agent to the appearance of the first symptoms."],
+["G","Prodromal stage","A short period of mild symptoms at the end of incubation; indicates the onset of disease."],
+["G","Period of invasion","The agent multiplies at high levels, shows its greatest toxicity and becomes well established in target tissues."],
+["G","Convalescent period","Recovery: between the end of the disease and complete restoration of health."],
+["F","Industrial fermentation","E.g. alcohol, vinegar (Acetobacteraceae) and dairy products."],
+["F","Antibiotic production","Beta-lactams, including penicillins (from fungi of the genus Penicillium) and cephalosporins."],
+["F","Cloning vehicles","Microbes serve as vehicles for cloning in more complex organisms such as plants."],
+["F","Biotech enzymes","E.g. Taq polymerase, reporter genes, and techniques like the yeast two-hybrid system."],
+["F","Biopolymers","Microorganisms are used for biosynthesis of xanthan, alginate and cellulose."],
+["F","Bioremediation","Biodegradation of domestic, agricultural and industrial wastes and subsurface pollution in soils, sediments and marine environments."],
+["F","Probiotics","Bacteria potentially beneficial to the digestive system (prebiotics are related)."],
+["N","Normal flora","E.g. Staphylococcus aureus, Streptococcus pneumoniae, Haemophilus influenzae: potential pathogens living commensally or parasitically without disease unless host barriers, tissue resistance or immunity are weakened."],
+["N","Endogenous bacterial disease","Disease caused when a member of the normal flora infects: bacteria “from within”."],
+["N","Classic opportunistic infections","Dental caries and periodontal disease caused by normal flora of the oral cavity."],
+["N","Sterile sites","Normal flora and contaminants live on body surfaces; blood and internal tissues are sterile."],
+["N","Outcome of infection","Infection rarely leads to disease. Outcome depends on route of entry, number of infectious bacteria, and (most importantly) the status of host defenses."],
+["K","Microbiological procedure","Two routes: stains (basic simple and basic compound) and microscopes (electron microscope and light microscope)."],
+["K","Ancient period","Before the discovery of the microscope: the existence of microorganisms was hypothesized for many centuries."],
+["K","Modern period","After the invention of the microscope; begins with Hooke’s observations in the 1660s."],
+["K","Leeuwenhoek’s book","One of his books has a Latin chapter that translates as “Concerning the wonderful structure of things in nature”, investigated by microscope."],
+["A","Branches of microbiology","Classified into pure and applied sciences."],
+["A","Taxonomic arrangement","Pure microbiology organized by group: bacteriology, mycology, protozoology, phycology (algology), parasitology, immunology, virology, nematology."],
+["A","Integrative arrangement","Pure microbiology organized by function: microbial cytology, physiology, ecology and genetics."],
+["A","Applied microbiology","Practical benefits: industrial fermentation, antibiotics, cloning vehicles, enzymes, biopolymers, bioremediation and probiotics."],
+["F","Beta-lactam antibacterials","Include the penicillins (produced by fungi of the genus Penicillium) and the cephalosporins."],
+["N","Commensal or parasitic relationship","Potential pathogens in the normal flora can live this way without producing disease."],
+["N","Transmission between hosts","Bacteria can be transmitted from one host to another, giving them additional opportunities to colonize or infect."],
+["N","When infection occurs","If a bacterium, whether or not part of the normal flora, breaches a body surface, an infection is said to have occurred."],
+["N","Infection vs infectious disease","Infection does not necessarily lead to infectious disease; infection probably rarely does."]
 ];
-const ovGrid = document.getElementById('overview-grid');
-laws.forEach(l=>{
-  const d = document.createElement('div');
-  d.className='law-card';
-  d.innerHTML = `<span class="cat">${l.cat}</span><p>${l.html}</p>`;
-  ovGrid.appendChild(d);
-});
-
-/* ============ DIAGRAM 1: ATOM ============ */
-const atomInfo = document.getElementById('atom-info');
-const atomFacts = {
-  p: "<span class='lead'>Proton</span>Positively charged. Its count fixes the atomic number — the identity of the element.",
-  n: "<span class='lead'>Neutron</span>Uncharged. Its count varies between isotopes of the same element.",
-  e: "<span class='lead'>Electron</span>Negatively charged, found in the orbitals around the nucleus. Gaining or losing electrons is what creates ions."
-};
-['p','n','e'].forEach(id=>{
-  document.getElementById(id+'-part').addEventListener('click',()=>atomInfo.innerHTML=atomFacts[id]);
-  document.getElementById(id+'-label').addEventListener('click',()=>atomInfo.innerHTML=atomFacts[id]);
-});
-
-/* ============ DIAGRAM 2: GROUP 1 STRIP ============ */
-const group1 = [
-  {z:3, sym:"Li", mass:"6.94", config:"1s² 2s¹", fact:"Used as Li₂CO₃/citrate for bipolar disorder."},
-  {z:11, sym:"Na", mass:"22.99", config:"1s² 2s² 2p⁶ 3s¹", fact:"Most abundant extracellular cation; NaCl treats dehydration."},
-  {z:19, sym:"K", mass:"39.10", config:"[Ar] 4s¹", fact:"95% intracellular; KCl treats potassium depletion."},
-  {z:37, sym:"Rb", mass:"85.47", config:"[Kr] 5s¹", fact:"Rarely used clinically compared with Li, Na, K."},
-  {z:55, sym:"Cs", mass:"132.91", config:"[Xe] 6s¹", fact:"The only alkali metal that is golden yellow, not silvery."},
-  {z:87, sym:"Fr", mass:"(223)", config:"[Rn] 7s¹", fact:"Extremely rare and radioactive; no pharmaceutical use."},
+// tabs
+const names=["Overview","Interactive Diagrams","Mini Map","Flash Cards","Quiz Bank"];
+names.forEach((n,i)=>{const b=E("button","",n);b.setAttribute("role","tab");b.onclick=()=>go(i);$("#nav").append(b)});
+function go(i){document.querySelectorAll("section").forEach((s,k)=>s.classList.toggle("on",k==i));document.querySelectorAll("nav button").forEach((b,k)=>b.setAttribute("aria-selected",k==i))}
+go(0);
+// ===== Interactive Diagrams (source: lecture only) =====
+const N=(i,l,k,d,c,x)=>({i,l,k,d,c:c||[],x:x||[]});
+const DG=[
+{t:"Microorganism Forms",ty:"Concept Map",p:"What microbiology studies and the forms microscopic organisms can take.",src:"Microbiology definition",
+n:N("mb","Microbiology","m","Study of microscopic organisms. Greek: mikros = small, bios = life, -logia (study).",[
+ N("mo","Microscopic organisms","b","Any living organism that is a single cell, a cell cluster, or has no cells at all.",[N("uc","Unicellular","r","A single cell."),N("cc","Cell cluster","r","A group of cells."),N("ac","Acellular","r","Has no cells at all.")]),
+ N("vw","Viewed with","b","Must be viewed with the aid of a microscope or electron microscope.",[N("m2","Microscope","r","Used to view microscopic organisms."),N("e2","Electron microscope","r","Used to view microscopic organisms.")]),
+ N("sp","Microbiologist","r","A specialist in microbiology.")]),
+c:[["mo","vw","must be viewed with"],["sp","mb","specializes in"]]},
+{t:"Microbiological Procedure",ty:"Classification Tree",p:"The two routes of the microbiological procedure and their sub-types.",src:"Microbiological procedure chart",
+n:N("p","Microbiological procedure","m","Lecture chart dividing the procedure into stains and microscope.",[
+ N("st","Stains","b","Branch of the procedure chart.",[N("bs","Basic simple","r","Stain type listed in the chart."),N("bc","Basic compound","r","Stain type listed in the chart.")]),
+ N("mi","Microscope","b","Branch of the procedure chart.",[N("em","EM","r","Electron microscope."),N("li","Light","r","Light microscope.")])]),c:[]},
+{t:"Historical View",ty:"Timeline",s:"t",p:"Key figures from the ancient period to the modern era, in lecture order.",src:"Historical view",
+n:N("h","Historical view","m","Ancient = before the discovery of the microscope; Modern = after its invention.",[
+ N("an","Ancient","b","Before the microscope: the existence of microorganisms was hypothesized for many centuries."),
+ N("hk","Hooke · 1660s","s","First observed microorganisms with a microscope.",0,["Coined the term “cell”","Observed the fruiting bodies of molds"]),
+ N("lw","Leeuwenhoek · 1632–1723","s","Dutch scientist credited with observing the first bacteria.",0,["One of his books has a Latin chapter, translated: “Concerning the wonderful structure of things in nature”, investigated by microscope"]),
+ N("pa","Pasteur · 1822–1895","s","Defined pasteurization and Germ Theory.",0,["Pasteurization prevents spoilage of food by bacteria","Demonstrated that germs were responsible for disease"]),
+ N("co","Cohn · 1828–1898","s","Developed the first classification scheme based on bacteria shape.",0,["Detailed and described the life cycle of Bacillus"]),
+ N("ko","Koch · 1843–1910","s","Identified anthrax and developed agar growth medium.",0,["Koch’s postulates: a systematic method to establish the microbial cause of disease"])]),
+c:[["an","hk","microscope invented"],["hk","lw","next"],["lw","pa","next"],["pa","co","next"],["co","ko","next"]]},
+{t:"Branches of Microbiology",ty:"Classification Tree",p:"Pure (taxonomic and integrative) versus applied branches.",src:"Branches of microbiology",
+n:N("br","Branches of microbiology","m","Classified into pure and applied sciences.",[
+ N("pu","Pure microbiology","b","Divided into taxonomic and integrative arrangements.",[
+  N("tx","Taxonomic arrangement","b","Branches organized by the type of organism or system studied.",[
+   N("t1","Bacteriology","r","The study of bacteria."),N("t2","Mycology","r","The study of fungi."),N("t3","Protozoology","r","The study of protozoa."),N("t4","Phycology / algology","r","The study of algae."),N("t5","Parasitology","r","The study of parasites."),N("t6","Immunology","r","The study of the immune system."),N("t7","Virology","r","The study of viruses."),N("t8","Nematology","r","The study of the nematodes.")]),
+  N("ig","Integrative arrangement","b","Branches organized by the aspect of the microbe studied.",[
+   N("i1","Microbial cytology","r","The study of microscopic and submicroscopic details of microorganisms."),
+   N("i2","Microbial physiology","r","The study of how the microbial cell functions biochemically.",0,["Microbial growth","Microbial metabolism","Microbial cell structure"]),
+   N("i3","Microbial ecology","r","The relationship between microorganisms and their environment."),
+   N("i4","Microbial genetics","r","The study of how genes are organized and regulated in microbes in relation to their cellular functions.")])]),
+ N("ap","Applied microbiology","b","See the Benefits diagram below.")]),c:[]},
+{t:"Benefits of Applied Microbiology",ty:"Classification Tree",p:"Uses and benefits of microorganisms listed in the lecture.",src:"Applied microbiology – Benefits",
+n:N("ab","Applied microbiology: benefits","m","Practical uses of microorganisms.",[
+ N("fe","Industrial fermentation","r","e.g. production of alcohol (vinegar – Acetobacteraceae) and dairy products."),
+ N("an2","Antibiotic production","b","The beta-lactam antibacterials.",[N("pe","Penicillins","r","Produced by fungi in the genus Penicillium."),N("ce","Cephalosporins","r","Beta-lactam antibacterial.")]),
+ N("cl","Cloning vehicles","r","Vehicles for cloning in more complex organisms such as plants."),
+ N("bt","Biotechnological production","b","Important enzymes, reporter genes and novel molecular biology techniques.",[N("tq","Taq polymerase","r","Important enzyme."),N("rg","Reporter genes","r","For use in other genetic systems."),N("y2","Yeast two hybrid system","r","A novel molecular biology technique.")]),
+ N("bs2","Biosynthesis","r","Microorganisms are used for the biosynthesis of xanthan, alginate, cellulose."),
+ N("bd","Biodegradation / bioremediation","b","Of domestic, agricultural and industrial wastes and subsurface pollution in soils, sediments and marine environments."),
+ N("pp","Probiotics / prebiotics","w","Various claims concern their contribution to human and animal health.",0,["Probiotics: bacteria potentially beneficial to the digestive system"])]),c:[]},
+{t:"Types of Infection",ty:"Classification Tree",p:"Infection types defined in the lecture and how some relate to each other.",src:"Infection",
+n:N("in","Infection","m","The entry, establishment & multiplication of pathogenic organisms within a host.",[
+ N("g1","Primary / Secondary","b","Presented together in the lecture.",[N("pr","Primary infection","r","An initial infection in a previously healthy individual that is later complicated by an additional (secondary) infection."),N("se","Secondary infection","r","An infection that compounds a preexisting one.")]),
+ N("g2","Acute / Chronic","b","Presented together in the lecture.",[N("ac2","Acute infection","r","Characterized by rapid onset & short duration."),N("ch","Chronic infection","r","Any process or disease that persists over a long duration.")]),
+ N("g3","Localized · Focal · Systemic","b","Presented together in the lecture.",[N("lo","Localized infection","r","Occurs when a microbe enters a specific tissue, infects it & remains confined there."),N("fo","Focal infection","r","Occurs when an infectious agent breaks loose from a localized infection & is carried by the circulation to other tissues."),N("sy","Systemic infection","r","Infections that invade many compartments & organs via the circulation, occurring throughout the body.")]),
+ N("mx","Mixed infection (synergistic)","r","Occurs when several different pathogens interact simultaneously to produce an infection."),
+ N("g4","Related terms","b","Terms defined alongside infection.",[N("po","Portal of entry","r","Route of entry for an infectious agent; typically a cutaneous or membranous route."),N("id","Infectious disease","w","The state of damage or toxicity in the body caused by an infectious agent.")])]),
+c:[["pr","se","later complicated by"],["ac2","ch","contrast: short vs long duration"],["lo","fo","agent breaks loose → circulation"],["in","id","rarely leads to"]]},
+{t:"Stages of Infection",ty:"Flowchart",s:"f",p:"The four stages of infection, in order.",src:"Stages of infection",
+n:N("si","Stages of infection","m","Four stages from initial contact to restored health.",[
+ N("s1","Incubation period","s","From the initial contact with an infectious agent to the appearance of the first symptoms."),
+ N("s2","Prodromal stage","s","A short period of mild symptoms at the end of incubation; indicates the onset of disease."),
+ N("s3","Period of invasion","w","During a clinical infection the agent multiplies at high levels, exhibits its greatest toxicity & becomes well established in the target tissues.",0,["Multiplies at high levels","Greatest toxicity","Well established in target tissues"]),
+ N("s4","Convalescent period","r","Recovery: the period between the end of the disease & the complete restoration of health.")]),
+c:[["s1","s2","first mild symptoms"],["s2","s3","onset of disease"],["s3","s4","end of the disease"]]},
+{t:"Pathogen Terminology",ty:"Concept Map",p:"How pathogen, pathogenicity, virulence and toxin-related terms relate.",src:"Pathogen, Pathogenicity, Virulence, Toxigenicity",
+n:N("pt","Pathogen","m","Any agent (usually a virus, bacterium, fungus, protozoan or helminth) that causes a disease.",[
+ N("pg","Pathogenicity","b","The capacity of microbes to cause a disease or infection.",[N("tp","True (primary) pathogens","r","Capable of causing infection & disease in healthy persons with normal immune defenses."),N("op","Opportunistic pathogens","w","Cause disease when the host’s defenses are compromised or when established in a part of the body that is natural to them.")]),
+ N("pl","Pathologic","r","Capable of inducing physical damage to the host."),
+ N("vi","Virulence","b","In infection, the relative capacity of a pathogen to invade and harm host cells.",[N("vf","Virulence factor","r","A microbe’s structures or capabilities that allow it to establish itself in a host & cause damage.")]),
+ N("tg","Toxigenicity","b","The tendency of a pathogen to produce toxins.",[N("tx2","Toxinoses","r","Disease whose adverse effects are primarily due to production & release of toxins."),N("tm","Toximias (toxin + blood)","r","A toxin (microbial or otherwise) is spread throughout the bloodstream."),N("ix","Intoxications (botulism)","r","Caused by ingestion of toxins.")])]),
+c:[["tp","op","contrast: healthy host vs compromised defenses"],["vf","vi","related term"],["tx2","tm","toxin spread in bloodstream"],["tx2","ix","toxin ingestion"]]},
+{t:"Bacterial Infection Pathway",ty:"Flowchart",s:"f",p:"From normal flora to infectious disease, and what shapes the outcome.",src:"Bacterial infection",
+n:N("bp","From normal flora to infectious disease","m","Infection does not necessarily lead to infectious disease.",[
+ N("nf","Normal flora","s","Some normal flora (potential pathogens) live in a commensal or parasitic relationship without producing disease.",0,["e.g. Staphylococcus aureus, Streptococcus pneumoniae, Haemophilus influenzae","Found with “contaminating” environmental bacteria on body surfaces; blood and internal tissues are sterile","Bacteria can be transmitted between hosts, giving extra opportunities to colonize or infect"]),
+ N("bh","Surface breached","s","A bacterium, whether or not part of the normal flora, breaches a body surface."),
+ N("if","Infection","s","An infection is said to have occurred."),
+ N("fa","Factors shaping the outcome","b","Other factors determine the outcome of infection.",[N("f1","Route of entry","r","Factor in the outcome."),N("f2","Number of infectious bacteria","r","Factor in the outcome."),N("f3","Host defenses (most important)","w","Disease needs an opportunity from a compromise in anatomical barriers, tissue resistance or immunity.")]),
+ N("di","Infectious disease","r","Infection probably rarely leads to infectious disease."),
+ N("ed","Endogenous bacterial disease","w","When a normal-flora member causes infectious disease: disease brought on by bacteria “from within”.",0,["Classic opportunistic infections: dental caries and periodontal disease from normal flora of the oral cavity"])]),
+c:[["nf","bh","breach"],["bh","if","infection occurs"],["if","fa","outcome depends on"],["fa","di","rarely leads to"],["di","ed","if caused by normal flora"]]}
 ];
-const ptRow = document.getElementById('pt-row');
-const ptInfo = document.getElementById('pt-info');
-group1.forEach(el=>{
-  const c = document.createElement('div');
-  c.className='pt-cell';
-  c.innerHTML = `<span class="zz">${el.z}</span><span class="ss">${el.sym}</span><span class="zz" style="text-align:right;">${el.mass}</span>`;
-  c.addEventListener('click',()=>{
-    document.querySelectorAll('.pt-cell').forEach(x=>x.classList.remove('sel'));
-    c.classList.add('sel');
-    ptInfo.innerHTML = `<span class="lead">${el.sym} — configuration ${el.config}</span>${el.fact}`;
-  });
-  ptRow.appendChild(c);
-});
+function buildDg(dg,idx){
+ const all={},cn=[...dg.c];let z=1,card=E("div","card dg");
+ const w=(n,r)=>{all[n.i]=n;n.c.forEach(c=>{if(!(r&&dg.s))cn.push([n.i,c.i,"includes"]);w(c,0)})};w(dg.n,1);
+ card.innerHTML="<div class='dh'><h3>"+(idx+1)+". "+dg.t+"</h3><span class='bdg'>"+dg.ty+"</span></div><p class='pp'>"+dg.p+"</p><p class='src'><b>Source topic:</b> "+dg.src+"</p>";
+ const bar=E("div","bar2"),cv=E("div","cv"),dt=E("div","dt","Tap or hover a node to see its term, explanation and relationships.");
+ const msg=dt.innerHTML;
+ const bt=(t,f)=>{const b=E("button","chip",t);b.onclick=f;bar.append(b)};
+ const fold=c=>{cv.querySelectorAll("li").forEach(li=>{li.classList.toggle("cl",c);const g=li.querySelector(":scope>.nr>.tg");if(g)g.textContent=c?"+":"−"})};
+ const zoom=()=>{cv.style.fontSize=(16*z)+"px"};
+ bt("Expand all",()=>fold(0));bt("Collapse all",()=>fold(1));bt("Zoom +",()=>{z=Math.min(1.6,z+.15);zoom()});bt("Zoom −",()=>{z=Math.max(.7,z-.15);zoom()});
+ bt("Reset view",()=>{z=1;zoom();fold(0);cv.querySelectorAll(".nd").forEach(b=>b.classList.remove("on","rel"));dt.innerHTML=msg;cv.scrollTo(0,0)});
+ const nb=n=>{const b=E("button","nd r-"+n.k,n.l);b.title=n.d;b.dataset.i=n.i;b.onclick=()=>sel(n.i);b.onmouseenter=()=>{if(matchMedia("(hover:hover)").matches)sel(n.i)};return b};
+ const ul=ns=>{const u=E("ul");ns.forEach(n=>{const li=E("li"),r=E("div","nr");if(n.c.length){const t=E("button","tg","−");t.setAttribute("aria-label","Expand or collapse "+n.l);t.onclick=()=>{const c=li.classList.toggle("cl");t.textContent=c?"+":"−"};r.append(t)}r.append(nb(n));li.append(r);if(n.c.length)li.append(ul(n.c));u.append(li)});return u};
+ const rt=E("div","nr");rt.append(nb(dg.n));cv.append(rt);
+ if(dg.s){const q=E("div","sq"+(dg.s=="t"?" h":""));dg.n.c.forEach((n,i)=>{if(i){const c=cn.find(x=>x[0]==dg.n.c[i-1].i&&x[1]==n.i);q.append(E("div","ar","<span>"+(dg.s=="t"?"→":"↓")+"</span><small>"+(c?c[2]:"")+"</small>"))}const it=E("div","it");it.append(nb(n));if(n.c.length)it.append(ul(n.c));q.append(it)});cv.append(q)}
+ else cv.append(ul(dg.n.c));
+ function sel(id){cv.querySelectorAll(".nd").forEach(b=>{const i=b.dataset.i;b.classList.toggle("on",i==id);b.classList.toggle("rel",cn.some(c=>(c[0]==id&&c[1]==i)||(c[1]==id&&c[0]==i)))});
+  const n=all[id];let h="<b>"+n.l+"</b><p>"+n.d+"</p>";if(n.x.length)h+="<ul>"+n.x.map(x=>"<li>"+x+"</li>").join("")+"</ul>";dt.innerHTML=h;
+  const rs=cn.filter(c=>c[0]==id||c[1]==id);if(rs.length){const d=E("div","rl","<small>Relationships:</small>");rs.forEach(c=>{const o=c[0]==id?c[1]:c[0],b=E("button","chip",(c[0]==id?"→ ":"← ")+all[o].l+" · "+c[2]);b.onclick=()=>sel(o);d.append(b)});dt.append(d)}}
+ card.append(bar,cv,dt);return card}
+DG.forEach((d,i)=>$("#dgs").append(buildDg(d,i)));
 
-/* ============ DIAGRAM 3: AUFBAU BUILDER ============ */
-const aufbauData = {
-  "H (1)":["1s¹"], "He (2)":["1s²"], "Li (3)":["1s²","2s¹"], "Be (4)":["1s²","2s²"],
-  "B (5)":["1s²","2s²","2p¹"], "Na (11)":["1s²","2s²","2p⁶","3s¹"], "K (19)":["1s²","2s²","2p⁶","3s²","3p⁶","4s¹"]
-};
-const aufRow = document.getElementById('aufbau-row');
-const orbBoxes = document.getElementById('orbital-boxes');
-const aufInfo = document.getElementById('aufbau-info');
-function drawConfig(name, parts){
-  orbBoxes.innerHTML='';
-  parts.forEach(p=>{
-    const b=document.createElement('div');
-    b.className='ob filled';
-    b.textContent=p;
-    orbBoxes.appendChild(b);
-  });
-  aufInfo.innerHTML = `<span class="lead">${name}</span>${parts.join(' ')}`;
-}
-Object.keys(aufbauData).forEach(name=>{
-  const btn=document.createElement('div');
-  btn.className='aufbau-el';
-  btn.textContent=name;
-  btn.addEventListener('click',()=>drawConfig(name, aufbauData[name]));
-  aufRow.appendChild(btn);
-});
-drawConfig("Na (11)", aufbauData["Na (11)"]);
-
-/* ============ DIAGRAM 4: WATER REACTION ============ */
-document.getElementById('water-btn').addEventListener('click',()=>{
-  document.getElementById('water-eq').classList.add('show');
-});
-
-/* ============ DIAGRAM 5: ION SIZE ============ */
-const ionCircle = document.getElementById('ion-circle');
-const ionInfo = document.getElementById('ion-info');
-document.querySelectorAll('#ion-toggle .ion-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('#ion-toggle .ion-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    if(btn.dataset.state==='atom'){
-      ionCircle.style.width='120px'; ionCircle.style.height='120px';
-      ionCircle.textContent='Na';
-      ionInfo.textContent='Neutral sodium atom: 11 protons, 11 electrons.';
-    } else {
-      ionCircle.style.width='72px'; ionCircle.style.height='72px';
-      ionCircle.textContent='Na⁺';
-      ionInfo.textContent='Sodium cation: lost its single valence electron. 11 protons, 10 electrons — noticeably smaller than the atom.';
-    }
-  });
-});
-
-/* ============ DIAGRAM 6: THERAPEUTIC WINDOWS ============ */
-function buildBar(containerId, segments){
-  const bar = document.getElementById(containerId);
-  const total = segments.reduce((s,seg)=>s+seg.width,0);
-  segments.forEach(seg=>{
-    const d=document.createElement('div');
-    d.className='window-seg';
-    d.style.width = (seg.width/total*100)+'%';
-    d.style.background = seg.color;
-    d.textContent = seg.label;
-    d.addEventListener('click',()=>{
-      document.getElementById('window-info').innerHTML = `<span class="lead">${seg.label}</span>${seg.detail}`;
-    });
-    bar.appendChild(d);
-  });
-}
-buildBar('li-bar',[
-  {width:1.5,color:'#49b3a6',label:'0–1.5 normal',detail:'Therapeutic range for lithium salts used in bipolar disorder / mania.'},
-  {width:0.5,color:'#e2933f',label:'1.5–2.0 toxic',detail:'Tremors, renal impairment, convulsion, memory problems, forgetfulness.'},
-  {width:0.6,color:'#dd6b7f',label:'>2.0 emergency',detail:'Requires emergency treatment — can be fatal.'}
+// mini map (hierarchical, collapsible)
+const T=(a,d,r,k)=>({a,d,r,k:k||[]});
+const MM=T("Introduction to Microbiology","","",[
+T("Microbiology","Study of microscopic organisms","defined as",[
+ T("Etymology","","",[T("Greek mikros = small"),T("Greek bios = life"),T("-logia = study")]),
+ T("Microscopic organism","Any living organism that is:","",[T("Unicellular (single cell)"),T("Cell cluster"),T("Acellular (no cells)"),T("Viewed with microscope or electron microscope")]),
+ T("Microbiologist","Specialist in microbiology")]),
+T("Microbiological Procedure","","contains",[
+ T("Stains","","",[T("Basic simple"),T("Basic compound")]),
+ T("Microscope","","",[T("EM (electron microscope)"),T("Light")])]),
+T("Historical View","","divided into",[
+ T("Ancient","Before discovery of the microscope","",[T("Existence of microorganisms hypothesized for many centuries")]),
+ T("Modern","After microscope invention","",[
+  T("Robert Hooke (1660s)","First to observe microorganisms with a microscope","",[T("Coined the term “cell”"),T("Observed fruiting bodies of molds")]),
+  T("Anton van Leeuwenhoek (1632–1723)","Dutch scientist; credited with observing first bacteria","",[T("Book chapter in Latin","“Concerning the wonderful structure of things in nature”, investigated by microscope")]),
+  T("Louis Pasteur (1822–1895)","","",[T("Pasteurization","Prevents food spoilage by bacteria"),T("Germ Theory","Germs are responsible for disease")]),
+  T("Ferdinand Cohn (1828–1898)","","",[T("First classification scheme based on bacterial shape"),T("Described life cycle of Bacillus")]),
+  T("Robert Koch (1843–1910)","","",[T("Identified anthrax"),T("Developed agar growth medium"),T("Koch’s postulates","Systematic method to establish microbial cause of disease")])])]),
+T("Branches of Microbiology","Classified into pure and applied sciences","classified into",[
+ T("Pure Microbiology","","",[
+  T("Taxonomic arrangement","","",[T("Bacteriology","Bacteria"),T("Mycology","Fungi"),T("Protozoology","Protozoa"),T("Phycology / Algology","Algae"),T("Parasitology","Parasites"),T("Immunology","Immune system"),T("Virology","Viruses"),T("Nematology","Nematodes")]),
+  T("Integrative arrangement","","",[T("Microbial cytology","Microscopic and submicroscopic details of microorganisms"),T("Microbial physiology","How the microbial cell functions biochemically","includes",[T("Microbial growth"),T("Microbial metabolism"),T("Microbial cell structure")]),T("Microbial ecology","Relationship between microorganisms and their environment"),T("Microbial genetics","How genes are organized and regulated in microbes in relation to cellular functions")])]),
+ T("Applied Microbiology","Benefits","",[
+  T("Industrial fermentation","","e.g.",[T("Alcohol production (vinegar – Acetobacteraceae)"),T("Dairy products")]),
+  T("Antibiotic production","Beta-lactam antibacterials","includes",[T("Penicillins","Produced by fungi of genus Penicillium"),T("Cephalosporins")]),
+  T("Cloning vehicles","In more complex organisms such as plants"),
+  T("Biotechnological production","","e.g.",[T("Important enzymes: Taq polymerase"),T("Reporter genes for other genetic systems"),T("Novel molecular techniques: yeast two hybrid system")]),
+  T("Biosynthesis","Xanthan, alginate, cellulose"),
+  T("Biodegradation / Bioremediation","","of",[T("Domestic, agricultural, industrial wastes"),T("Subsurface pollution in soils, sediments, marine environments")]),
+  T("Health claims","Consumption of probiotics and/or prebiotics","",[T("Probiotics","Bacteria potentially beneficial to the digestive system")])])]),
+T("Infection","Entry, establishment & multiplication of pathogenic organisms within a host","",[
+ T("Types of Infection","","",[
+  T("Primary infection","Initial infection in a previously healthy individual, later complicated by a secondary infection"),
+  T("Secondary infection","Infection that compounds a preexisting one"),
+  T("Acute infection","Rapid onset & short duration"),
+  T("Chronic infection","Process or disease that persists over a long duration"),
+  T("Localized infection","Microbe enters a specific tissue, infects it & remains confined there"),
+  T("Systemic infection","Invades many compartments & organs via circulation; throughout the body"),
+  T("Focal infection","Agent breaks loose from a localized infection & is carried by circulation to other tissues"),
+  T("Mixed infection","Also called synergistic infection; several different pathogens interact simultaneously to produce an infection")]),
+ T("Portal of entry","Route of entry of an infectious agent; typically cutaneous or membranous"),
+ T("Infectious disease","State of damage or toxicity in the body caused by an infectious agent"),
+ T("Stages of Infection","","followed by",[
+  T("1. Incubation period","From initial contact with agent to appearance of first symptoms"),
+  T("2. Prodromal stage","Short period of mild symptoms at end of incubation; indicates onset of disease"),
+  T("3. Period of invasion","Agent multiplies at high levels, shows greatest toxicity & becomes well established in target tissues"),
+  T("4. Convalescent period","Recovery; between end of disease & complete restoration of health")])]),
+T("Pathogens & Pathogenic Terms","","",[
+ T("Pathogen","Any agent that causes disease","",[T("Virus"),T("Bacterium"),T("Fungus"),T("Protozoan"),T("Helminth")]),
+ T("Pathogenicity","Capacity of microbes to cause a disease or infection","",[T("True (primary) pathogens","Cause infection & disease in healthy persons with normal immune defenses"),T("Opportunistic pathogens","Cause disease when host defenses are compromised or when established in a part of the body natural to them")]),
+ T("Pathologic","Capable of inducing physical damage to the host"),
+ T("Virulence","Relative capacity of a pathogen to invade and harm host cells","",[T("Virulence factor","Microbe’s structures or capabilities that allow it to establish in a host & cause damage")]),
+ T("Toxigenicity","Tendency of a pathogen to produce toxins","leads to",[T("Toxinoses","Disease whose adverse effects are primarily due to production & release of toxins","",[T("Toximias (toxin + blood)","Toxin spread throughout the bloodstream"),T("Intoxications (botulism)","Caused by ingestion of toxins")])])]),
+T("Bacterial Infection","","",[
+ T("Normal flora","Potential pathogens living in a commensal or parasitic relationship without producing disease","e.g.",[T("Staphylococcus aureus"),T("Streptococcus pneumoniae"),T("Haemophilus influenzae")]),
+ T("When disease occurs","Only with compromise or weakness in host’s anatomical barriers, tissue resistance or immunity"),
+ T("Transmission","Bacteria can pass from one host to another, giving extra opportunities to colonize or infect"),
+ T("Endogenous bacterial disease","Disease caused by normal flora, “from within”","example of",[T("Dental caries & periodontal disease","Opportunistic infections caused by oral cavity normal flora")]),
+ T("Body surfaces vs. internal","Normal flora & environmental contaminants are on body surfaces; blood & internal tissues are sterile"),
+ T("Infection vs. disease","Infection occurs when a bacterium breaches a surface; it rarely leads to infectious disease","",[T("Outcome factors","","",[T("Route of entry"),T("Number of infectious bacteria"),T("Status of host defenses (most important)")])])])
 ]);
-buildBar('k-bar',[
-  {width:1.0,color:'#dd6b7f',label:'<3.5 hypokalemia',detail:'Muscle weakness, ECG abnormalities; often from GI loss or loop/thiazide diuretics.'},
-  {width:1.5,color:'#49b3a6',label:'3.5–5.0 normal',detail:'Normal plasma potassium therapeutic window.'},
-  {width:1.5,color:'#e2933f',label:'5.0–6.5 rising',detail:'Elevated potassium — needs monitoring, especially in kidney disease.'},
-  {width:0.8,color:'#dd6b7f',label:'>6.5 severe',detail:'Acute severe hyperkalaemia — risk of cardiac arrest; treat with calcium gluconate, insulin, diuretics, dialysis or resins.'}
-]);
-
-/* ============ MINI MAP ============ */
-const mapTopics = [
- {t:"Atomic structure", b:"An atom is built from a central nucleus (protons and neutrons) surrounded by orbitals holding electrons. Protons carry a positive charge, neutrons are uncharged, and electrons carry a negative charge."},
- {t:"The nucleus", b:"The nucleus holds virtually all of the atom's mass. Number of protons = atomic number. Protons + neutrons = mass number (also called the nucleon number)."},
- {t:"Electrons", b:"Atoms are electrically neutral, so in a neutral atom the number of electrons equals the number of protons."},
- {t:"Electronic configuration", b:"Electronic configuration is the arrangement of electrons in atomic orbitals, filled in the Aufbau order: 1s < 2s < 2p < 3s < 3p < 4s < 3d < 4p < 5s ... The outermost electrons, beyond the stable core, are the valence electrons."},
- {t:"Ionization", b:"When an atom gains an electron it becomes negatively charged — an anion, always larger than the original atom. Metal atoms lose electrons to become positively charged cations, always smaller than the original atom."},
- {t:"The periodic law", b:"Proposed independently around 1868–1870 by the Russian chemist Mendeleeff and the German chemist Lothar Meyer: when elements are arranged in order of increasing atomic number, their physical and chemical properties repeat periodically."},
- {t:"Alkali metals — identity", b:"Members of group 1 of the periodic table, excluding hydrogen, are the alkali metals: lithium, sodium, potassium, rubidium, caesium and francium. They belong to the s-block, with one electron in their outer shell, and their chemistry is defined by losing that electron to form a monocationic ion M⁺."},
- {t:"Alkali metals — chemical behavior", b:"They have a silvery white appearance, except caesium which is golden yellow. They are all soft metals that can be cut with a knife, with softness increasing down the group. They are very reactive and oxidise in air, with reactivity increasing down the group, and they react violently with water to form the metal hydroxide and hydrogen gas: 2M + 2H2O → 2MOH + H2."},
- {t:"Alkali metals — pharmaceutical role", b:"The metals themselves are not directly useable due to their reactive behavior in aqueous media. Instead, alkali metal halides and some oxides, carbonates, citrates and other salts are of medicinal interest. NaCl and KCl solutions are important as oral rehydration salts, and KCl also treats potassium depletion."},
- {t:"Lithium — advantages of use", b:"Since 1880, lithium salts have been used for the prophylaxis and treatment of mania, and as prophylaxis in bipolar disorder and recurrent depression. It is taken orally, usually as lithium carbonate (Li2CO3) or lithium citrate, with a total dose up to 30 mmol/day. Li2CO3 is preferred because it causes the least stomach irritation."},
- {t:"Lithium — disadvantages of use", b:"Lithium has a very narrow therapeutic index, so blood level monitoring is essential. Plasma concentrations above 1.5 mmol/L may cause toxic effects — tremors in the fingers, renal impairment, convulsion, memory problems and forgetfulness. Extreme doses can cause nausea and diarrhea, and doses above 2 mmol/L require emergency treatment and can be fatal."},
- {t:"Lithium — further risks", b:"Lithium use is linked to weight gain and decreased thyroid levels, and can lead to diabetes insipidus with polyuria from kidney damage. NSAIDs reduce lithium clearance by the kidneys, causing toxicity, and diuretics that cause sodium depletion can make lithium toxicity worse and hazardous."},
- {t:"Sodium — maintenance of body fluids", b:"Sodium is essential for regulating body fluid via osmosis. It accounts for over 90% of ions in plasma and interstitial fluid and is the most abundant cation in the extracellular fluid. The kidneys regulate fluid levels through filtration, secretion and reabsorption of Na+ in the nephrons."},
- {t:"Sodium — nerve impulses and muscle contraction", b:"Sodium ions build an electrostatic potential across cell membranes, with potassium as the counter-ion, enabling nerve impulse transmission. Na+ also establishes osmotic gradients that control water balance; the kidneys sense drops in blood pressure or Na+ and release hormones such as renin, ADH and atrial natriuretic peptide to restore balance."},
- {t:"Sodium — drugs, diet and toxicity", b:"Sodium chloride solutions treat sodium depletion and dehydration, usually intravenously, or orally in mild chronic cases with sodium chloride or sodium bicarbonate. Sodium bicarbonate corrects plasma pH imbalances such as renal tubular acidosis — the bicarbonate anion is the active component while Na+ provides solubility and compatibility."},
- {t:"Sodium — dietary limits and imbalance", b:"Table salt is the main dietary source of NaCl; adult intake should stay under 6 g/day. Hyponatremia (low sodium) causes low blood pressure, dehydration and muscle cramps. Hypernatremia (high sodium) is linked to cardiovascular disorders such as hypertension. Acute toxicity may appear after 500–1000 mg/kg body weight, causing vomiting, GI ulceration, renal damage and a higher risk of kidney stones."},
- {t:"Potassium — clinical role", b:"95% of the body's potassium is inside cells, with the remaining 5% circulating in plasma. This balance is maintained by the Na+/K+ pump, and imbalances — hypokalemia or hyperkalaemia — can have serious consequences."},
- {t:"Hypokalemia", b:"A potentially serious condition of low plasma potassium, causing muscle weakness or ECG abnormalities. It can result from reduced intake through GI disturbance (diarrhea, vomiting) or increased excretion through diuresis — loop diuretics and thiazides increase both sodium and potassium excretion, while potassium-sparing diuretics preserve potassium."},
- {t:"Potassium salts in practice", b:"Potassium salts are preferably given as liquid preparations, with KCl the preferred salt; other salts are used if there is risk of hyperchloremia. Potassium bicarbonate is given orally for chronic acidosis states but must be used carefully given the narrow window for potassium. Potassium citrate is used over-the-counter in the UK to relieve discomfort from mild urinary-tract infections by raising urinary pH, but is avoided with kidney pain, blood in urine, hypertension or diabetes without medical advice."},
- {t:"Potassium supplements and toxicity risk", b:"Oral potassium tablets or capsules are designed for slow release, since high concentrations of K+ are toxic to tissue and can injure the gastric mucosa; nonprescription supplements are usually restricted to under 100 mg of K+."},
- {t:"Hyperkalaemia and its treatment", b:"The therapeutic window for plasma potassium is narrow, 3.5–5.0 mmol/L. Potassium salts can cause nausea, vomiting and bowel ulceration. Acute severe hyperkalaemia — plasma potassium above 6.5 mmol/L or ECG changes — can trigger cardiac arrest, needing immediate treatment: IV calcium gluconate to protect the heart, IV soluble insulin to shift potassium into cells, diuretics, dialysis, or ion-exchange resins such as polystyrene sulfonate for milder cases."},
-];
-const mapList = document.getElementById('map-list');
-const mapDisplay = document.getElementById('map-display');
-mapTopics.forEach((topic,i)=>{
-  const b=document.createElement('button');
-  b.className='map-item';
-  b.textContent=topic.t;
-  b.addEventListener('click',()=>{
-    document.querySelectorAll('.map-item').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    mapDisplay.innerHTML = `<h3>${topic.t}</h3><p>${topic.b}</p>`;
-  });
-  mapList.appendChild(b);
-});
-
-/* ============ FLASH CARDS ============ */
-const flashcardsByLevel = {"1": [{"cat": "Alkali Metals", "front": "What are alkali metals?", "back": "Members of group 1 of the periodic table, except hydrogen."}, {"cat": "Alkali Metals", "front": "Which three alkali metals are specifically discussed in the lecture?", "back": "Lithium (Li), sodium (Na), and potassium (K)."}, {"cat": "Alkali Metals", "front": "Why are alkali metals classified as s-block metals?", "back": "Because they have one electron in their outer shell."}, {"cat": "Alkali Metals", "front": "What ion is formed when an alkali metal loses its outer s electron?", "back": "A monocationic M⁺ ion."}, {"cat": "Alkali Metals", "front": "What is the appearance of most alkali metals?", "back": "Silvery white."}, {"cat": "Alkali Metals", "front": "Which alkali metal is golden yellow?", "back": "Caesium."}, {"cat": "Alkali Metals", "front": "How does softness change down the alkali-metal group?", "back": "It increases within the group."}, {"cat": "Alkali Metals", "front": "How does reactivity change within the alkali-metal group?", "back": "Reactivity increases within the group."}, {"cat": "Alkali Metals", "front": "What happens when alkali metals react with water?", "back": "They form the metal hydroxide and hydrogen."}, {"cat": "Alkali Metals", "front": "What are the two important oral rehydration salts mentioned?", "back": "NaCl and KCl."}, {"cat": "Lithium", "front": "What is the main medical use of lithium salts mentioned in the lecture?", "back": "Treatment of bipolar disorder."}, {"cat": "Lithium", "front": "What are the two oral lithium preparations mentioned?", "back": "Lithium carbonate (Li₂CO₃) and lithium citrate."}, {"cat": "Lithium", "front": "Why is Li₂CO₃ the preferred lithium salt?", "back": "It causes the least irritation to the stomach."}, {"cat": "Lithium", "front": "What is an important disadvantage of lithium therapy?", "back": "It has a very narrow therapeutic index, so blood levels must be monitored."}, {"cat": "Lithium", "front": "What lithium plasma concentration may cause toxic effects?", "back": "More than 1.5 mmol/L."}, {"cat": "Lithium", "front": "What may happen when lithium plasma concentration exceeds 2 mmol/L?", "back": "Emergency treatment is required and the condition may be fatal."}, {"cat": "Sodium", "front": "What is the main biological role of sodium in body fluids?", "back": "Maintenance and regulation of body fluids through its osmotic activity."}, {"cat": "Potassium", "front": "What percentage of K⁺ is found inside cells?", "back": "About 95%."}, {"cat": "Potassium", "front": "What maintains the balance of potassium between cells and plasma?", "back": "The Na⁺/K⁺ pump."}, {"cat": "Potassium", "front": "What is hypokalaemia?", "back": "A potentially serious condition involving low levels of K⁺ in blood plasma."}, {"cat": "Potassium", "front": "What are two symptoms of hypokalaemia mentioned?", "back": "Muscle weakness and ECG abnormalities."}, {"cat": "Potassium", "front": "What can cause hypokalaemia?", "back": "Reduced K⁺ intake due to diarrhoea/vomiting or increased K⁺ excretion due to diuresis."}, {"cat": "Potassium", "front": "Which potassium salt is preferably given as a liquid preparation?", "back": "KCl."}, {"cat": "Potassium", "front": "What is potassium citrate used for in the UK according to the lecture?", "back": "Relief of discomfort in mild urinary-tract infections by increasing urinary pH."}, {"cat": "Potassium", "front": "What is one serious consequence of severe hyperkalaemia?", "back": "Cardiac arrest."}], "2": [{"cat": "Alkali Metals", "front": "Why are alkali metals mainly unsuitable for direct pharmaceutical use?", "back": "Their reaction behavior in aqueous media makes the metals themselves unsuitable; therefore, their halides, some oxides, carbonates, citrates, and other salts are of medicinal interest."}, {"cat": "Alkali Metals", "front": "How are NaCl and KCl used in relation to dehydration?", "back": "Their solutions are important as oral rehydration salts, while NaCl solutions are also used for sodium depletion and dehydration."}, {"cat": "Lithium", "front": "Why does lithium therapy require blood-level monitoring?", "back": "Lithium has a very narrow therapeutic index window."}, {"cat": "Lithium", "front": "What toxic effects are associated with Li⁺ concentrations above 1.5 mmol/L?", "back": "Tremors in the fingers, renal impairment, and convulsions; memory problems and slowed mental ability/forgetfulness are also commonly reported."}, {"cat": "Lithium", "front": "What can happen with extreme lithium doses?", "back": "Nausea and diarrhoea may occur."}, {"cat": "Lithium", "front": "What additional adverse effects of lithium salts are mentioned?", "back": "Weight gain, decreased thyroid levels, and diabetes insipidus with polyuria."}, {"cat": "Lithium", "front": "How can NSAIDs increase lithium toxicity?", "back": "They reduce lithium clearance by the kidneys."}, {"cat": "Lithium", "front": "Why can diuretics make lithium toxicity worse?", "back": "Diuretics can cause sodium depletion, which can make lithium toxicity worse and hazardous."}, {"cat": "Sodium", "front": "What is the relationship between Na⁺ and extracellular fluid?", "back": "Na⁺ is the most abundant cation in extracellular fluid and its content controls extracellular volume."}, {"cat": "Sodium", "front": "What role do the kidneys play in sodium regulation?", "back": "They regulate body fluid levels and perform filtration, secretion, and reabsorption of Na⁺ in the nephrons."}, {"cat": "Sodium", "front": "How does sodium participate in muscle contraction and enzyme action?", "back": "Na⁺ plays a crucial role in muscle contraction and in the mode of action of several enzymes."}, {"cat": "Sodium", "front": "What are signs of sodium deficiency mentioned in the lecture?", "back": "Low blood pressure, dehydration, and muscle cramps."}, {"cat": "Sodium", "front": "What can hypernatremia cause?", "back": "High salt plasma levels can result in cardiovascular disorders such as hypertension."}, {"cat": "Potassium", "front": "Why must potassium bicarbonate be carefully evaluated when used for chronic acidosis?", "back": "Even small changes in plasma potassium levels can have severe consequences."}, {"cat": "Potassium", "front": "Why are nonprescription potassium supplements usually restricted to less than 100 mg of K⁺?", "back": "Very high concentrations of K⁺ are toxic to tissue cells and can cause injury to the gastric mucosa, so formulations are designed for slow secretion."}], "3": [{"cat": "Alkali Metals", "front": "How do the electronic configuration and chemical behavior of alkali metals explain their common ionic form?", "back": "Alkali metals are s-block metals with one electron in the outer shell; they characteristically lose this s electron to form monocationic M⁺ ions."}, {"cat": "Alkali Metals", "front": "Why are alkali-metal salts more important pharmaceutically than the elemental metals?", "back": "The elemental metals are not mainly directly usable because of their reaction behavior in aqueous media. Their halides, some oxides, carbonates, citrates, and other salts have medicinal applications."}, {"cat": "Lithium", "front": "Explain the major factors that can increase lithium toxicity according to the lecture.", "back": "Lithium has a narrow therapeutic index. NSAIDs reduce renal lithium clearance, while diuretics can cause sodium depletion and worsen lithium toxicity. Plasma Li⁺ above 1.5 mmol/L may produce toxic effects, while levels above 2 mmol/L require emergency treatment and may be fatal."}, {"cat": "Sodium", "front": "Connect renal tubular acidosis with the use of sodium bicarbonate.", "back": "Renal tubular acidosis may occur when the kidneys fail to filter/secrete H⁺ or fail to recover HCO₃⁻. These processes are necessary for pH balance. Sodium bicarbonate is administered orally to regulate serum pH; its bicarbonate anion is the pharmaceutically active component, while Na⁺ provides solubility and compatibility."}, {"cat": "Sodium", "front": "How does sodium contribute to extracellular fluid regulation?", "back": "Na⁺ is the most abundant cation in extracellular fluid, accounts for over 90% of all ions in plasma and interstitial fluid according to the lecture, and controls extracellular volume. The kidneys regulate body-fluid levels through filtration, secretion, and reabsorption of Na⁺ in nephrons."}, {"cat": "Sodium", "front": "Explain how Na⁺ participates in nerve impulse transmission.", "back": "Na⁺ helps actively build an electrostatic potential across cell membranes, with K⁺ acting as the counter-ion. This electrostatic potential is important for transmission of nerve impulses."}, {"cat": "Potassium", "front": "Why can loop and thiazide diuretics cause hypokalaemia?", "back": "These diuretics increase Na⁺ secretion in the nephrons to increase water excretion. Unfortunately, they also increase K⁺ excretion, which can lead to hypokalaemia. Potassium-sparing diuretics, in contrast, actively preserve K⁺."}, {"cat": "Potassium", "front": "Why must potassium supplementation be carefully formulated and administered?", "back": "Very high K⁺ concentrations are toxic to tissue cells and can injure the gastric mucosa. Therefore, potassium tablets/capsules are usually formulated for slow K⁺ release, and nonprescription potassium supplements are generally restricted to less than 100 mg K⁺."}, {"cat": "Potassium", "front": "What is the clinical significance of the potassium therapeutic window?", "back": "The therapeutic plasma K⁺ window is very small, approximately 3.5–5.0 mmol/L. Hyperkalaemia can cause severe health problems, and acute severe hyperkalaemia is defined as plasma K⁺ above 6.5 mmol/L or the presence of ECG changes, potentially leading to cardiac arrest."}, {"cat": "Potassium", "front": "How can severe hyperkalaemia be managed according to the lecture?", "back": "Treatment options include IV calcium gluconate to minimize cardiac effects, IV soluble insulin to shift K⁺ into cells, diuretics to increase renal K⁺ secretion, and dialysis when urgent treatment is required. Ion-exchange resins such as polystyrene sulfonate may be used for mild-to-moderate hyperkalaemia when there are no ECG changes."}]};
-let fcLevel = "1";
-let activeCat = "All";
-const fcGrid = document.getElementById('fc-grid');
-
-function renderCards(){
-  fcGrid.innerHTML='';
-  flashcardsByLevel[fcLevel].filter(f=>activeCat==="All"||f.cat===activeCat).forEach(f=>{
-    const card=document.createElement('div');
-    card.className='fc-card';
-    card.innerHTML = `<div class="fc-inner">
-      <div class="fc-face fc-front"><span class="fc-cat">${f.cat}</span><p>${f.front}</p></div>
-      <div class="fc-face fc-back"><p>${f.back}</p></div>
-    </div>`;
-    card.addEventListener('click',()=>card.classList.toggle('flip'));
-    fcGrid.appendChild(card);
-  });
-}
-
-document.querySelectorAll('#fc-lvl-tabs .lvl-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    fcLevel = btn.dataset.lvl;
-    document.querySelectorAll('#fc-lvl-tabs .lvl-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    renderCards();
-  });
-});
-
-renderCards();
-
-/* ============ QUIZ BANK ============ */
-const quizByLevel = {"1": [{"cat": "Alkali Metals", "q": "Which elements are called alkali metals?", "options": ["Elements of group 2", "Elements of group 1 except hydrogen", "Elements of group 17", "All s-block elements"], "a": 1}, {"cat": "Alkali Metals", "q": "Which of the following are specifically discussed as alkali metals in the lecture?", "options": ["Li, Na, K", "Na, Mg, K", "Li, Ca, Na", "K, Ca, Mg"], "a": 0}, {"cat": "Lithium", "q": "Which alkali metal is medically used to treat bipolar disorder?", "options": ["Sodium", "Potassium", "Lithium", "Caesium"], "a": 2}, {"cat": "Alkali Metals", "q": "Alkali metals belong to which block of the periodic table?", "options": ["p-block", "d-block", "f-block", "s-block"], "a": 3}, {"cat": "Alkali Metals", "q": "How many electrons do alkali metals have in their outer shell?", "options": ["One", "Two", "Three", "Eight"], "a": 0}, {"cat": "Alkali Metals", "q": "The loss of the outer s electron of an alkali metal produces:", "options": ["M²⁻", "M⁻", "M⁺", "M²⁺"], "a": 2}, {"cat": "Alkali Metals", "q": "Which alkali metal has a golden-yellow appearance according to the lecture?", "options": ["Lithium", "Sodium", "Potassium", "Caesium"], "a": 3}, {"cat": "Alkali Metals", "q": "The softness of alkali metals:", "options": ["Decreases within the group", "Increases within the group", "Remains constant", "Depends only on temperature"], "a": 1}, {"cat": "Alkali Metals", "q": "The reactivity of alkali metals:", "options": ["Decreases within the group", "Increases within the group", "Remains constant", "Is absent in water"], "a": 1}, {"cat": "Alkali Metals", "q": "When alkali metals react with water, they form:", "options": ["Metal chloride and oxygen", "Metal hydroxide and hydrogen", "Metal oxide and oxygen", "Metal carbonate and hydrogen"], "a": 1}, {"cat": "Alkali Metals", "q": "Which two alkali metal salts are important as oral rehydration salts?", "options": ["LiCl and LiOH", "NaCl and KCl", "NaOH and KOH", "Li₂CO₃ and NaHCO₃"], "a": 1}, {"cat": "Lithium", "q": "Which lithium salt is the preferred lithium salt used because it causes the least irritation to the stomach?", "options": ["Lithium chloride", "Lithium hydroxide", "Lithium carbonate", "Lithium sulfate"], "a": 2}, {"cat": "Lithium", "q": "Lithium salts have been used for:", "options": ["Treatment of hypertension only", "Prophylaxis and treatment of mania and prophylaxis in bipolar disorder", "Treatment of hyperkalaemia only", "Treatment of dehydration only"], "a": 1}, {"cat": "Lithium", "q": "Lithium has a:", "options": ["Very wide therapeutic index", "Very narrow therapeutic index window", "Zero therapeutic effect", "Therapeutic index that does not require monitoring"], "a": 1}, {"cat": "Lithium", "q": "Lithium blood plasma concentrations above which value may cause toxic effects?", "options": ["0.5 mmol/L", "1.0 mmol/L", "1.5 mmol/L", "5.0 mmol/L"], "a": 2}, {"cat": "Lithium", "q": "Which of the following can occur with toxic lithium concentrations?", "options": ["Tremors in the fingers", "Increased vision", "Increased appetite only", "Hyperactivity only"], "a": 0}, {"cat": "Lithium", "q": "Which drugs can reduce lithium clearance by the kidneys and lead to lithium toxicity?", "options": ["NSAIDs", "Antacids", "Potassium supplements", "Calcium gluconate"], "a": 0}, {"cat": "Sodium", "q": "Sodium is the most abundant cation in:", "options": ["Intracellular fluid", "Extracellular fluid", "Bone only", "Gastric fluid only"], "a": 1}, {"cat": "Sodium", "q": "Approximately what percentage of all ions in plasma and interstitial fluid is accounted for by sodium?", "options": ["10%", "25%", "50%", "Over 90%"], "a": 3}, {"cat": "Sodium", "q": "Sodium is important for the transmission of:", "options": ["Digestive enzymes", "Nerve impulses", "Hormones only", "Bile salts"], "a": 1}, {"cat": "Sodium", "q": "The most common dietary source of NaCl is:", "options": ["Milk", "Table salt", "Fruit", "Meat only"], "a": 1}, {"cat": "Potassium", "q": "Approximately what percentage of K⁺ in the human body is found inside cells?", "options": ["5%", "25%", "50%", "95%"], "a": 3}, {"cat": "Potassium", "q": "What is the preferred potassium salt for potassium supplementation according to the lecture?", "options": ["KCl", "KOH", "K₂CO₃", "K₂SO₄"], "a": 0}, {"cat": "Potassium", "q": "The therapeutic plasma potassium window is approximately:", "options": ["1.0–2.0 mmol/L", "2.0–3.0 mmol/L", "3.5–5.0 mmol/L", "6.5–8.0 mmol/L"], "a": 2}, {"cat": "Potassium", "q": "Acute severe hyperkalaemia is defined when plasma potassium exceeds:", "options": ["3.5 mmol/L", "5.0 mmol/L", "6.5 mmol/L", "10 mmol/L"], "a": 2}], "2": [{"cat": "Alkali Metals", "q": "An element belongs to group 1, has one electron in its outer shell, and commonly loses that electron to form M⁺. According to the lecture, which description best identifies this element?", "options": ["It is an alkali metal and an s-block metal", "It is a p-block metal forming M²⁺", "It is a d-block metal forming M⁺", "It is a group 2 metal forming M⁻"], "a": 0}, {"cat": "Alkali Metals", "q": "Why are alkali metals themselves not mainly directly usable in pharmaceutical applications?", "options": ["They are insoluble in water", "They react strongly in aqueous media", "They have no chemical reactivity", "They cannot form salts"], "a": 1}, {"cat": "Potassium", "q": "A patient requires treatment for potassium depletion. Which option is most directly supported by the lecture?", "options": ["KCl can be used", "Lithium carbonate should be used", "Sodium bicarbonate must always be used", "Potassium citrate is used specifically to replace potassium in all cases"], "a": 0}, {"cat": "Lithium", "q": "A patient receiving lithium therapy develops tremors, renal impairment, and convulsions. Which explanation is most consistent with the lecture?", "options": ["Lithium plasma concentration may have exceeded 1.5 mmol/L", "Lithium plasma concentration is below 0.5 mmol/L", "Potassium concentration must be below 3.5 mmol/L", "Sodium chloride intake is necessarily below 6 g/day"], "a": 0}, {"cat": "Lithium", "q": "Why can concurrent use of diuretics worsen lithium toxicity?", "options": ["They increase lithium absorption from the stomach", "They can cause sodium depletion", "They convert lithium into potassium", "They increase lithium synthesis"], "a": 1}, {"cat": "Sodium", "q": "A patient has sodium depletion and dehydration. Which treatment described in the lecture is appropriate?", "options": ["Sodium chloride solution", "Lithium carbonate", "Calcium gluconate", "Potassium citrate only"], "a": 0}, {"cat": "Sodium", "q": "Why is Na⁺ particularly important for nerve impulse transmission according to the lecture?", "options": ["It builds an electrostatic potential across membranes, with K⁺ acting as the counter-ion", "It directly produces hormones", "It destroys membrane proteins", "It prevents all ion movement across membranes"], "a": 0}, {"cat": "Sodium", "q": "A patient has renal tubular acidosis. According to the lecture, sodium bicarbonate can help regulate serum pH because renal tubular acidosis involves problems with:", "options": ["H⁺ secretion and/or bicarbonate recovery", "Potassium synthesis", "Lithium absorption", "Sodium production in the liver"], "a": 0}, {"cat": "Sodium", "q": "Which statement correctly distinguishes the roles of the ions in sodium bicarbonate according to the lecture?", "options": ["Na⁺ is the pharmaceutically active component and HCO₃⁻ provides solubility", "HCO₃⁻ is pharmaceutically active, while Na⁺ is responsible for solubility and compatibility", "Both ions are pharmacologically inactive", "Na⁺ causes renal tubular acidosis"], "a": 1}, {"cat": "Potassium", "q": "A patient taking loop or thiazide diuretics develops muscle weakness and ECG abnormalities. Which explanation is most consistent with the lecture?", "options": ["Diuretics can increase K⁺ excretion and cause hypokalaemia", "Diuretics always preserve K⁺", "Diuretics directly cause lithium synthesis", "Diuretics increase intracellular sodium only"], "a": 0}, {"cat": "Potassium", "q": "Why are potassium-sparing diuretics different from loop and thiazide diuretics in relation to potassium?", "options": ["They actively preserve potassium ions", "They increase potassium excretion", "They convert potassium to sodium", "They eliminate potassium from cells"], "a": 0}, {"cat": "Potassium", "q": "Why are potassium tablets or capsules designed to release K⁺ slowly?", "options": ["Very high K⁺ concentrations can be toxic to tissue cells and injure gastric mucosa", "Potassium cannot be absorbed rapidly", "K⁺ must be converted into Na⁺ first", "Slow release increases hyperkalaemia intentionally"], "a": 0}, {"cat": "Potassium", "q": "A patient has severe hyperkalaemia with ECG changes. Which treatment from the lecture specifically minimizes the effects of hyperkalaemia on the heart?", "options": ["Intravenous calcium gluconate", "Oral potassium citrate", "Lithium carbonate", "Sodium chloride tablets"], "a": 0}, {"cat": "Potassium", "q": "Which treatment promotes movement of potassium ions from plasma into cells?", "options": ["Soluble insulin IV", "Potassium citrate orally", "Lithium citrate orally", "Calcium chloride orally"], "a": 0}, {"cat": "Potassium", "q": "A patient has mild-to-moderate hyperkalaemia without ECG changes. Which option is mentioned for removing excess potassium?", "options": ["Ion-exchange resins such as polystyrene sulfonate resins", "Lithium carbonate", "Potassium bicarbonate", "Potassium citrate"], "a": 0}], "3": [{"cat": "Alkali Metals", "q": "Consider the following information from the lecture:\n\n• Alkali metals have one outer-shell electron.\n• They form M⁺ ions by losing that electron.\n• Their reactivity increases within the group.\n• They react violently with water to form hydroxides and hydrogen.\n• Their direct pharmaceutical use is limited because of their reaction behavior in aqueous media.\n\nWhich conclusion is most consistent with all these statements?", "options": ["The pharmaceutical importance of alkali metals is mainly associated with their salts rather than the elemental metals themselves.", "Alkali metals are chemically unreactive and therefore ideal as elemental drugs.", "Their pharmaceutical activity depends on forming M²⁺ ions in water.", "Their medicinal importance is limited only to lithium."], "a": 0}, {"cat": "Lithium", "q": "A patient taking lithium develops tremors, renal impairment, and convulsions. The patient is also taking an NSAID and a diuretic. Based only on the lecture, which combination best explains the increased risk of lithium toxicity?", "options": ["NSAID reduces lithium renal clearance, while the diuretic can cause sodium depletion", "NSAID increases potassium excretion, while the diuretic increases lithium clearance", "Both drugs directly destroy lithium in plasma", "NSAID increases sodium concentration, while the diuretic prevents lithium toxicity"], "a": 0}, {"cat": "Sodium", "q": "A patient has renal tubular acidosis. According to the lecture, which sequence best describes the renal problem underlying the acid-base disturbance and the rationale for sodium bicarbonate?", "options": ["Failure to secrete H⁺ and/or recover HCO₃⁻ → impaired pH balance → bicarbonate can be administered orally", "Excess secretion of HCO₃⁻ only → increased blood pH → lithium carbonate is administered", "Increased K⁺ production → decreased blood pH → potassium citrate is always required", "Failure of Na⁺ production → decreased blood pH → NaCl is the active component of bicarbonate therapy"], "a": 0}, {"cat": "Potassium", "q": "The lecture states that 95% of K⁺ is intracellular and that the Na⁺/K⁺ pump maintains this distribution. A patient treated with loop or thiazide diuretics develops hypokalaemia. Which explanation best connects these facts?", "options": ["Increased Na⁺ secretion in the nephrons associated with these diuretics also increases K⁺ excretion, potentially lowering plasma K⁺.", "These diuretics actively preserve K⁺, causing hyperkalaemia.", "The Na⁺/K⁺ pump converts K⁺ into Na⁺ during diuresis.", "K⁺ leaves the cells only because lithium concentrations increase."], "a": 0}, {"cat": "Potassium", "q": "A patient has plasma K⁺ above 6.5 mmol/L and ECG changes. Based on the lecture, which combination represents appropriate emergency-oriented treatment options?", "options": ["Calcium gluconate IV to minimize cardiac effects and soluble insulin IV to shift K⁺ into cells", "Potassium bicarbonate orally and potassium citrate orally", "Lithium carbonate and sodium chloride", "Potassium supplements and potassium-sparing diuretics"], "a": 0}, {"cat": "Potassium", "q": "A patient with kidney disease is at risk of potassium accumulation. The lecture emphasizes careful monitoring because excessive plasma K⁺ may trigger cardiac arrest. Which statement best integrates the lecture’s approach?", "options": ["Plasma K⁺ must be monitored carefully, and severe hyperkalaemia may require immediate treatment such as calcium gluconate, insulin, diuretics, or dialysis.", "Potassium should always be supplemented because kidney disease causes hypokalaemia.", "Potassium levels do not require monitoring if the patient receives oral KCl.", "Hyperkalaemia is harmless unless nausea develops."], "a": 0}, {"cat": "Potassium", "q": "A patient has mild-to-moderate hyperkalaemia without ECG changes. Which treatment is specifically mentioned as an option to remove excess potassium?", "options": ["Polystyrene sulfonate ion-exchange resins", "Lithium citrate", "Potassium bicarbonate", "Sodium bicarbonate only"], "a": 0}, {"cat": "Sodium", "q": "A patient has sodium depletion and dehydration. The lecture states that treatment is mostly intravenous, while chronic mild-to-moderate sodium loss can be treated orally. Which statement correctly reflects the lecture?", "options": ["NaCl may be given intravenously for sodium depletion/dehydration, while NaCl or NaHCO₃ may be given orally in chronic mild-to-moderate sodium loss.", "Only potassium salts should be used.", "Lithium carbonate is the preferred treatment for sodium depletion.", "Sodium bicarbonate cannot be administered orally."], "a": 0}, {"cat": "Sodium", "q": "A patient develops low plasma sodium levels after sodium loss in the bowel. According to the lecture, which chain of effects is most consistent with the information provided?", "options": ["Sodium loss → hyponatremia → osmotic imbalance → possible low blood pressure, dehydration, and muscle cramps", "Sodium loss → hypernatremia → hypertension in every case", "Sodium loss → hyperkalaemia → gastric ulceration", "Sodium loss → increased lithium clearance → diabetes insipidus"], "a": 0}, {"cat": "Potassium", "q": "A patient takes potassium citrate for mild urinary-tract infection symptoms. Which situation, according to the lecture, requires avoiding potassium citrate without appropriate consultation?", "options": ["A male patient with kidney-area pain or blood/pus in urine, or a patient with raised blood pressure or diabetes", "A patient with mild urinary symptoms and normal blood pressure", "A patient who has no kidney-area pain and no blood or pus in urine", "Any patient who drinks water regularly"], "a": 0}]};
-let quizLevel = "1";
-
-function shuffle(arr){
-  for(let i=arr.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [arr[i],arr[j]]=[arr[j],arr[i]];
-  }
-  return arr;
-}
-let score=0;
-const quizList = document.getElementById('quiz-list');
-
-function renderQuiz(){
-  const quizRaw = quizByLevel[quizLevel];
-  document.getElementById('score-total').textContent = quizRaw.length;
-  quizList.innerHTML='';
-  score=0;
-  document.getElementById('score-val').textContent = score;
-  quizRaw.forEach((item,idx)=>{
-    const correctText = item.options[item.a];
-    const opts = shuffle(item.options.map((text,i)=>({text, correct:i===item.a})));
-    const block = document.createElement('div');
-    block.className='q-block';
-    block.innerHTML = `<div class="q-num">Question ${idx+1} of ${quizRaw.length}</div><p class="q-text">${item.q}</p><div class="q-options"></div>`;
-    const optWrap = block.querySelector('.q-options');
-    opts.forEach(o=>{
-      const b=document.createElement('button');
-      b.className='q-opt';
-      b.textContent=o.text;
-      b.addEventListener('click',()=>{
-        if(b.parentElement.dataset.answered) return;
-        optWrap.dataset.answered='1';
-        Array.from(optWrap.children).forEach(c=>c.disabled=true);
-        if(o.correct){ b.classList.add('correct'); score++; }
-        else {
-          b.classList.add('wrong');
-          Array.from(optWrap.children).find(c=>c.textContent===correctText).classList.add('correct');
-        }
-        document.getElementById('score-val').textContent = score;
-      });
-      optWrap.appendChild(b);
-    });
-    quizList.appendChild(block);
-  });
-}
-document.querySelectorAll('#quiz-lvl-tabs .lvl-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    quizLevel = btn.dataset.lvl;
-    document.querySelectorAll('#quiz-lvl-tabs .lvl-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    renderQuiz();
-  });
-});
-renderQuiz();
-document.getElementById('quiz-reset').addEventListener('click', renderQuiz);
-</script>
-</body>
-</html>
+function mk(n,lv){const li=document.createElement("li");li.className="l"+lv+(n.k.length?"":" lf");const b=E("button","nb"+(lv<3?" p":""));b.innerHTML=(n.k.length?'<span class="ar">▸</span>':'<span class="ar">•</span>')+"<span>"+n.a+"</span>"+(n.r?'<span class="rel">'+n.r+"</span>":"");li.append(b);if(n.d)li.append(E("div","dt",n.d));if(n.k.length){const u=document.createElement("ul");n.k.forEach(c=>u.append(mk(c,lv+1)));li.append(u);b.onclick=()=>li.classList.toggle("open")}return li}
+const mu=document.createElement("ul");const mr=mk(MM,1);mr.classList.add("open");mu.append(mr);$("#mm").append(mu);
+const setAll=o=>$("#mm").querySelectorAll("li").forEach(x=>{if(x.querySelector(":scope>ul"))x.classList.toggle("open",o||x.classList.contains("l1"))});
+$("#mxa").onclick=()=>setAll(true);$("#mca").onclick=()=>setAll(false);
+[["Primary infection","complicated by","Secondary infection"],["Localized infection","spreads via circulation to become","Focal infection"],["Infection","rarely leads to","Infectious disease"],["Incubation","followed by","Prodromal → Invasion → Convalescent"],["Toxigenicity","leads to","Toxinoses (Toximias, Intoxications)"],["Normal flora","cause (when host weakened)","Endogenous bacterial disease"],["Opportunistic pathogens","cause disease when","host defenses are compromised"],["Pasteur’s Germ Theory","demonstrated","germs are responsible for disease"],["Koch’s postulates","establish","microbial cause of disease"]].forEach(r=>$("#mr").append(E("div","","<b>"+r[0]+"</b> <i>→ "+r[1]+" →</i> "+r[2])));
+// levels
+const LV=[["Level 1","Easy"],["Level 2","Medium"],["Level 3","Hard"]];
+const F=[[["What does the word “microbiology” mean in its Greek origin?", "• mīkros = “small”\n• bios = “life”\n• -logia = the study of", "Put together, the term means the study of small life, i.e., microscopic organisms.", 1], ["Define microscopic organisms as used in microbiology.", "Any living organism that is either a single cell (unicellular), a cell cluster, or has no cells at all (acellular), and which must be viewed with the aid of a microscope or electron microscope.", "Three forms are covered: unicellular, cell cluster, and acellular. The defining feature is the need for a microscope or electron microscope.", 2], ["Who is a microbiologist?", "A specialist in microbiology.", "A microbiologist is the specialist who studies microscopic organisms.", 3], ["Who first observed microorganisms with a microscope in the 1660s, and which term did he coin?", "Robert Hooke. He coined the term “cell” and observed the fruiting bodies of molds.", "This marks the modern period (after the microscope invention), in contrast to the ancient period when microorganisms were only hypothesized.", 4], ["Who is credited with having observed the first bacteria?", "Anton van Leeuwenhoek (1632–1723), a Dutch scientist.", "One of his books has a Latin chapter that reads in translation: “Concerning the wonderful structure of things in nature”, investigated by microscope.", 5], ["Name two contributions of Louis Pasteur (1822–1895).", "• Defined pasteurization to prevent spoilage of food by bacteria\n• Defined Germ Theory and demonstrated that germs were responsible for disease", "Pasteur linked bacteria to both food spoilage and disease.", 6], ["What did Ferdinand Cohn (1828–1898) develop?", "The first classification scheme based on bacterial shape. He also detailed and described the life cycle of Bacillus.", "Cohn’s classification used bacterial shape as the basis.", 7], ["List the contributions of Robert Koch (1843–1910).", "• Identified anthrax\n• Developed agar growth medium\n• Koch’s postulates: a systematic method to establish the microbial cause of disease", "Koch’s postulates are the method for proving which microbe causes a disease.", 8], ["List the branches of pure microbiology in the taxonomic arrangement.", "• Bacteriology: bacteria\n• Mycology: fungi\n• Protozoology: protozoa\n• Phycology or algology: algae\n• Parasitology: parasites\n• Immunology: the immune system\n• Virology: viruses\n• Nematology: nematodes", "Each branch is named for the group (or system) it studies.", 9], ["Match each study with its branch: (a) algae, (b) parasites, (c) the immune system, (d) nematodes.", "(a) Phycology or algology\n(b) Parasitology\n(c) Immunology\n(d) Nematology", "Direct recall of branch names from the taxonomic arrangement.", 10], ["Name the four branches in the integrative arrangement of pure microbiology.", "• Microbial cytology\n• Microbial physiology\n• Microbial ecology\n• Microbial genetics", "These branches are organized by what aspect of microbes is studied.", 11], ["What does microbial physiology study?", "How the microbial cell functions biochemically. It includes the study of microbial growth, microbial metabolism and microbial cell structure.", "Physiology = biochemical functioning of the microbial cell.", 12], ["Which beta-lactam antibacterials are mentioned, and which organisms produce the penicillins?", "Penicillins and cephalosporins. The penicillins are produced by fungi in the genus Penicillium.", "Antibiotic production is one of the listed benefits of applied microbiology.", 13], ["Which biotechnological products and tools of microorganisms are listed in the lecture?", "• Taq polymerase (important enzyme)\n• Reporter genes for use in other genetic systems\n• Novel molecular biology techniques such as the yeast two hybrid system", "These are listed under biotechnological production of important enzymes and tools.", 14], ["What are probiotics?", "Bacteria potentially beneficial to the digestive system.", "The lecture mentions various claims about contributions to human and animal health from consuming probiotics and/or prebiotics.", 15], ["What are microbial biodegradation or bioremediation used for?", "Treating domestic, agricultural and industrial wastes and subsurface pollution in soils, sediments and marine environments.", "Microorganisms are beneficial for cleaning up waste and pollution.", 16], ["Define infection.", "The entry, establishment, and multiplication of pathogenic organisms within a host.", "Three steps: entry, establishment, multiplication.", 17], ["What is a primary infection?", "An initial infection in a previously healthy individual that is later complicated by an additional (secondary) infection.", "“Primary” = the first infection, in a previously healthy person.", 18], ["What is a secondary infection?", "An infection that compounds a preexisting one.", "It is added on top of an infection already present.", 19], ["What characterizes an acute infection?", "Rapid onset and short duration.", "Contrast with chronic infection, which persists over a long duration.", 20], ["Define chronic infections.", "Any process or disease that persists over a long duration.", "The key feature is long persistence.", 21], ["What is a portal of entry?", "The route of entry for an infectious agent; typically a cutaneous or membranous route.", "Cutaneous = through skin; membranous = through membranes.", 22], ["What is a pathogen?", "Any agent (usually a virus, bacterium, fungus, protozoan, or helminth) that causes a disease.", "Pathogens include several types of agents, not only bacteria.", 23], ["What is toxigenicity?", "The tendency of a pathogen to produce toxins.", "Toxigenicity is about toxin production, not about the disease that results.", 24], ["What are intoxications? Give the example from the lecture.", "Conditions caused by ingestion of toxins. Example: botulism.", "The toxin is ingested, rather than produced in the body or spread through the blood.", 25]], [["How does a localized infection differ from a systemic infection?", "• Localized: a microbe enters a specific tissue, infects it, and remains confined there\n• Systemic: infection invades many compartments and organs via the circulation, occurring throughout the body", "The difference is confinement to one tissue versus spread through the circulation.", 26], ["How does a focal infection arise, and how does it relate to a localized infection?", "It occurs when an infectious agent breaks loose from a localized infection and is carried by the circulation to other tissues.", "A focal infection starts from a localized infection, then the agent is carried by the circulation.", 27], ["How does a mixed (synergistic) infection differ from a secondary infection?", "• Mixed: several different pathogens interact simultaneously to produce an infection\n• Secondary: an infection that compounds a preexisting one", "Mixed = pathogens acting together at the same time. Secondary = a new infection added to an existing one.", 28], ["Arrange the stages of infection in order and state what happens in each.", "1. Incubation period: initial contact with the infectious agent to the appearance of the first symptoms\n2. Prodromal stage: short period of mild symptoms at the end of incubation; indicates the onset of disease\n3. Period of invasion: agent multiplies at high levels, shows its greatest toxicity, and becomes well established in target tissues\n4. Convalescent period: recovery, from the end of the disease to complete restoration of health", "The stages follow the course from contact, to symptoms, to peak disease, to recovery.", 29], ["How are the incubation period and the prodromal stage related?", "The prodromal stage is a short period of mild symptoms occurring at the end of the incubation period, and it indicates the onset of disease. Incubation itself runs from initial contact to the first symptoms.", "Prodromal sits at the end of incubation and signals that disease is starting.", 30], ["How do true (primary) pathogens differ from opportunistic pathogens?", "• True pathogens: capable of causing infection and disease in healthy persons with normal immune defenses\n• Opportunistic pathogens: cause disease when the host’s defenses are compromised, or when they become established in a part of the body that is natural to them", "The difference is whether host defenses must be compromised for disease to occur.", 31], ["Distinguish between pathogen, pathogenicity, and pathologic.", "• Pathogen: any agent that causes a disease\n• Pathogenicity: the capacity of microbes to cause a disease or infection\n• Pathologic: capable of inducing physical damage to the host", "Pathogen is the agent, pathogenicity is its capacity, pathologic describes capacity for physical damage.", 32], ["The term “toximias” is built from “toxin + blood.” What condition does it describe?", "A condition in which a toxin (microbial or otherwise) is spread throughout the bloodstream.", "The word itself helps: toxin + blood. Compare toxinoses (disease mainly due to toxin production and release) and intoxications (ingestion of toxins).", 33], ["What is the difference between infection and infectious disease?", "• Infection: entry, establishment and multiplication of pathogenic organisms within a host\n• Infectious disease: the state of damage or toxicity in the body caused by an infectious agent\n• Infection does not necessarily lead to infectious disease; in fact, it probably rarely does", "An infection can occur without producing damage or toxicity.", 34], ["How is microbiology divided, and how do the taxonomic and integrative arrangements differ?", "Branches are classified into pure and applied sciences. Pure microbiology has:\n• Taxonomic arrangement: branches named for what is studied, e.g., bacteriology, mycology, virology\n• Integrative arrangement: microbial cytology, physiology, ecology and genetics", "Taxonomic branches focus on a type of microbe or system; integrative branches focus on an aspect of microbial life.", 35], ["In the microbiological procedure chart, what are the two routes and their subtypes?", "• Stains: basic simple, basic compound\n• Microscope: EM (electron microscope), light", "Both stains and microscopes are used to study microorganisms.", 36], ["Compare the contributions of Pasteur and Koch to understanding disease.", "• Pasteur: defined Germ Theory and demonstrated that germs were responsible for disease\n• Koch: identified anthrax, developed agar growth medium, and gave Koch’s postulates, a systematic method to establish the microbial cause of disease", "Pasteur showed germs cause disease; Koch provided a method to establish the microbial cause.", 37], ["Match each application to its example: (a) industrial fermentation, (b) antibiotic production, (c) biosynthesis, (d) cloning.", "(a) Production of alcohol (vinegar, Acetobacteraceae) and dairy products\n(b) Beta-lactam antibacterials: penicillins (Penicillium) and cephalosporins\n(c) Xanthan, alginate, cellulose\n(d) Vehicles for cloning in more complex organisms such as plants", "These are the benefits listed under applied microbiology.", 38], ["Where are normal flora and contaminating bacteria found in the body, and what happens when a bacterium breaches that surface?", "• They are found on the body surfaces of the animal; the blood and internal tissues are sterile\n• If a bacterium (whether or not part of the normal flora) breaches one of these surfaces, an infection is said to have occurred", "Breaching the surface, not mere presence on it, defines an infection.", 39], ["Why do normal flora such as Staphylococcus aureus, Streptococcus pneumoniae and Haemophilus influenzae usually not cause disease?", "They are potential pathogens that live in a commensal or parasitic relationship without producing disease. They do not cause disease unless an opportunity arises through some compromise or weakness in the host’s anatomical barriers, tissue resistance or immunity.", "The host’s barriers and immunity keep them in check. The bacteria can also be transmitted from one host to another.", 40]], [["A previously healthy person develops an initial infection that is later complicated by another infection. In a different person, several different pathogens act together at the same time to cause an infection. Name the infection types.", "• Initial infection in the previously healthy person: primary infection\n• The complicating additional infection: secondary infection\n• Several pathogens interacting simultaneously: mixed (synergistic) infection", "Primary and secondary are sequential; mixed involves pathogens interacting simultaneously.", 41], ["A patient is exposed to an infectious agent. Later, mild symptoms appear; then the agent multiplies at high levels with its greatest toxicity in target tissues; finally the disease ends and health is fully restored. Name each phase in order. Which phase indicates the onset of disease?", "1. Incubation period (contact until first symptoms)\n2. Prodromal stage (short mild symptoms; indicates onset of disease)\n3. Period of invasion\n4. Convalescent period\n\nThe prodromal stage indicates the onset of disease.", "Matching each description to its stage shows you know both the order and the defining feature of each.", 42], ["Infection A stays confined to one tissue. Infection B occurs when the agent from a localized infection breaks loose and is carried by the circulation to other tissues. Infection C invades many compartments and organs via the circulation throughout the body. Classify A, B and C.", "• A: localized infection\n• B: focal infection\n• C: systemic infection", "B and C both involve the circulation, but B arises from a localized infection breaking loose, while C occurs throughout the body.", 43], ["Classify each: (1) a person ingests toxins; (2) a toxin is spread throughout the bloodstream; (3) a disease whose adverse effects are primarily due to production and release of toxins; (4) the tendency of a pathogen to produce toxins.", "• (1) Intoxication (e.g., botulism)\n• (2) Toximia\n• (3) Toxinosis\n• (4) Toxigenicity", "The terms differ by route and focus: ingestion, bloodstream spread, disease effect, or the tendency to produce toxins.", 44], ["Dental caries and periodontal disease are caused by normal flora of the oral cavity. Which infection category and which disease designation from the lecture apply, and why?", "• Classic opportunistic infections\n• Endogenous bacterial disease (disease brought on by bacteria “from within”)\n• Why: normal flora members are potential pathogens; opportunistic pathogens cause disease when host defenses are compromised or when established in a part of the body natural to them", "This links opportunistic pathogens to endogenous disease: a normal-flora member causing infectious disease.", 45], ["Match the concept: (a) the capacity of microbes to cause disease or infection; (b) the relative capacity of a pathogen to invade and harm host cells; (c) microbial structures or capabilities allowing establishment in a host and damage; (d) the tendency to produce toxins.", "• (a) Pathogenicity\n• (b) Virulence\n• (c) Virulence factor\n• (d) Toxigenicity", "Pathogenicity is the capacity, virulence is the relative capacity to invade and harm host cells, virulence factors are the means, and toxigenicity is toxin production.", 46], ["Two people are exposed to a bacterial infection. According to the lecture, which factors influence whether infection leads to infectious disease, and which is most important?", "• Route of entry\n• Number of infectious bacteria\n• Status of the host defenses (most importantly)", "Infection does not necessarily lead to infectious disease; host defenses are identified as the most important factor.", 47], ["A bacterium from the normal flora breaches a body surface after the host’s anatomical barriers are compromised, and disease results. Which terms from the lecture apply?", "• Infection has occurred (a bacterium breached a surface)\n• The bacterium acts as an opportunistic pathogen (host barriers/defenses compromised)\n• The disease is an endogenous bacterial disease (from within)\n• Normally, blood and internal tissues are sterile, so breaching the surface is what allows infection", "This integrates normal flora, opportunism, endogenous disease, and the definition of infection.", 48], ["Classify each as taxonomic or integrative, and name the branch: (a) how genes are organized and regulated in microbes; (b) the study of fungi; (c) microbial growth, metabolism and cell structure; (d) the relationship between microorganisms and their environment; (e) the study of viruses.", "• (a) Microbial genetics: integrative\n• (b) Mycology: taxonomic\n• (c) Microbial physiology: integrative\n• (d) Microbial ecology: integrative\n• (e) Virology: taxonomic", "Integrative branches are defined by the aspect studied; taxonomic ones by the group studied.", 49], ["Contrast the ancient and modern views of microorganisms. Among Leeuwenhoek, Pasteur, Cohn and Koch, who has the earliest listed life dates, and what is he credited with?", "• Ancient (before the microscope): the existence of microorganisms was only hypothesized for many centuries\n• Modern (after the microscope invention): microorganisms were observed, e.g., by Hooke in the 1660s\n• Earliest listed dates: Anton van Leeuwenhoek (1632–1723), credited with having observed the first bacteria", "The microscope turned a hypothesis into direct observation. The later scientists have dates of 1822–1895 (Pasteur), 1828–1898 (Cohn) and 1843–1910 (Koch).", 50]]];
+// MCQ bank: [question, [A,B,C,D], correct index, explanation]
+const Q=[[["In the Greek origin of the word “microbiology,” what does “bios” mean?", ["Small", "Study", "Life", "Cell"], 2, "The lecture gives mīkros = “small”, bios = “life”, and -logia = “the study of”."], ["A microscopic organism that has no cells at all is described as:", ["Acellular", "Unicellular", "A cell cluster", "Commensal"], 0, "Microscopic organisms may be unicellular, a cell cluster, or acellular (no cells at all)."], ["Microscopic organisms must be viewed with the aid of:", ["Agar growth medium alone", "A basic simple stain alone", "A method such as Koch’s postulates", "A microscope or electron microscope"], 3, "The definition states that microscopic organisms must be viewed with a microscope or electron microscope."], ["Who observed microorganisms for the first time with a microscope in the 1660s and coined the term “cell”?", ["Anton van Leeuwenhoek", "Robert Hooke", "Louis Pasteur", "Robert Koch"], 1, "Robert Hooke made the first microscopic observation of microorganisms in the 1660s and coined the term “cell”."], ["Which structures did Robert Hooke observe with a microscope?", ["The first bacteria", "Fruiting bodies of molds", "The life cycle of Bacillus", "Anthrax bacteria"], 1, "The lecture states that Hooke observed the fruiting bodies of molds."], ["Which Dutch scientist (1632–1723) is credited with having observed the first bacteria?", ["Robert Hooke", "Ferdinand Cohn", "Louis Pasteur", "Anton van Leeuwenhoek"], 3, "Leeuwenhoek is credited with having observed the first bacteria."], ["What was the purpose of pasteurization as defined by Louis Pasteur?", ["To prevent spoilage of food by bacteria", "To establish the microbial cause of disease", "To classify bacteria according to their shape", "To develop an agar growth medium for bacteria"], 0, "Pasteur defined pasteurization to prevent spoilage of food by bacteria."], ["Who developed the first classification scheme based on bacterial shape?", ["Robert Hooke", "Louis Pasteur", "Ferdinand Cohn", "Robert Koch"], 2, "Cohn developed the first classification scheme based on bacterial shape and described the life cycle of Bacillus."], ["Which contribution is attributed to Robert Koch?", ["Developing agar growth medium", "Defining pasteurization", "Coining the term “cell”", "Developing the first classification scheme based on shape"], 0, "Koch identified anthrax, developed agar growth medium, and gave Koch’s postulates."], ["The study of fungi is called:", ["Bacteriology", "Protozoology", "Phycology", "Mycology"], 3, "Mycology is the study of fungi."], ["Phycology (algology) is the study of:", ["Parasites", "Protozoa", "Algae", "Nematodes"], 2, "Phycology or algology is the study of algae."], ["Which branch of pure microbiology studies the immune system?", ["Virology", "Immunology", "Parasitology", "Nematology"], 1, "Immunology is the study of the immune system."], ["Any process or disease that persists over a long duration is called a:", ["Chronic infection", "Acute infection", "Localized infection", "Primary infection"], 0, "Chronic infections persist over a long duration, unlike acute infections (rapid onset, short duration)."], ["Which of the following is a branch listed under the integrative arrangement?", ["Bacteriology", "Mycology", "Virology", "Microbial cytology"], 3, "The integrative arrangement includes microbial cytology, physiology, ecology and genetics. The others are taxonomic branches."], ["Microbial ecology is the study of:", ["How genes are organized and regulated in microbes", "The microscopic and submicroscopic details of microorganisms", "The relationship between microorganisms and their environment", "How the microbial cell functions biochemically"], 2, "Microbial ecology = relationship between microorganisms and their environment."], ["The penicillins are produced by fungi of the genus:", ["Penicillium", "Bacillus", "Staphylococcus", "Acetobacteraceae"], 0, "The lecture states penicillins are produced by fungi in the genus Penicillium."], ["What are probiotics?", ["Reporter genes used for other genetic systems", "Bacteria potentially beneficial to the digestive system", "Important enzymes such as Taq polymerase", "Dyes used in basic compound staining"], 1, "Probiotics are defined as bacteria potentially beneficial to the digestive system."], ["Infection is defined as:", ["The state of damage or toxicity in the body caused by an infectious agent", "The capacity of microbes to cause a disease", "The period from initial contact with an infectious agent to the first symptoms", "The entry, establishment, and multiplication of pathogenic organisms within a host"], 3, "Infection = entry, establishment and multiplication of pathogenic organisms within a host. The state of damage or toxicity is infectious disease."], ["Which type of infection is characterized by rapid onset and short duration?", ["Chronic infection", "Acute infection", "Localized infection", "Secondary infection"], 1, "Acute infections are characterized by rapid onset and short duration."], ["A portal of entry is typically which kind of route?", ["Through the circulation only", "Through the blood and internal tissues", "A cutaneous or membranous route", "Through ingestion of toxins"], 2, "Portal of entry is the route of entry for an infectious agent; typically cutaneous or membranous."], ["The period from initial contact with an infectious agent to the appearance of the first symptoms is the:", ["Incubation period", "Prodromal stage", "Period of invasion", "Convalescent period"], 0, "This is the definition of the incubation period."], ["Which stage is the recovery period between the end of the disease and complete restoration of health?", ["Prodromal stage", "Incubation period", "Convalescent period", "Period of invasion"], 2, "The convalescent period is recovery, ending with complete restoration of health."], ["The capacity of microbes to cause a disease or infection is called:", ["Virulence", "Toxigenicity", "Pathologic capacity", "Pathogenicity"], 3, "Pathogenicity is the capacity to cause a disease or infection; virulence is the relative capacity to invade and harm host cells."], ["Intoxications (e.g., botulism) are caused by:", ["A toxin spread throughout the bloodstream", "Ingestion of toxins", "Several pathogens interacting simultaneously", "A microbe confined to a specific tissue"], 1, "Intoxications are caused by ingestion of toxins; botulism is the example."], ["Which of the following is listed as a normal bacterial flora member that is a potential pathogen?", ["Staphylococcus aureus", "Penicillium", "Acetobacteraceae", "Bacillus"], 0, "The lecture lists Staphylococcus aureus, Streptococcus pneumoniae and Haemophilus influenzae as normal flora that are potential pathogens."]], [["How does a localized infection differ from a systemic infection?", ["Localized invades many compartments and organs via the circulation, whereas systemic stays confined to one tissue", "Localized involves several different pathogens interacting, whereas systemic involves only a single pathogen", "Localized has a rapid onset and short duration, whereas systemic persists over a long duration", "Localized stays confined to a specific tissue, whereas systemic invades many compartments and organs via the circulation"], 3, "Localized = confined to a specific tissue. Systemic = invades many compartments and organs via the circulation, throughout the body."], ["A focal infection occurs when:", ["A microbe enters a specific tissue, infects it, and remains confined there", "An infectious agent breaks loose from a localized infection and is carried by the circulation to other tissues", "Several different pathogens interact simultaneously to produce an infection", "An additional infection compounds a preexisting infection in the host"], 1, "A focal infection arises from a localized infection whose agent is carried by the circulation to other tissues."], ["In the microbiological procedure chart, which subtypes fall under each branch?", ["Stains: basic simple and basic compound; microscope: EM and light", "Stains: EM and light; microscope: basic simple and basic compound", "Stains: basic simple and EM; microscope: basic compound and light", "Stains: light and basic compound; microscope: basic simple and EM"], 0, "The chart divides the procedure into stains (basic simple, basic compound) and microscope (EM, light)."], ["Which sequence correctly orders the stages of infection?", ["Prodromal stage → Incubation period → Period of invasion → Convalescent period", "Incubation period → Period of invasion → Prodromal stage → Convalescent period", "Incubation period → Prodromal stage → Period of invasion → Convalescent period", "Incubation period → Prodromal stage → Convalescent period → Period of invasion"], 2, "The course runs from contact to first symptoms, then mild symptoms, then high multiplication and greatest toxicity, then recovery."], ["The prodromal stage occurs at which point, and what does it indicate?", ["At the end of the period of invasion; it indicates recovery", "At the start of the convalescent period; it indicates restoration of health", "At the end of the incubation period; it indicates the onset of disease", "At the start of the incubation period; it indicates greatest toxicity"], 2, "The prodromal stage is a short period of mild symptoms at the end of incubation and indicates the onset of disease."], ["Which description fits an opportunistic pathogen?", ["It causes disease when the host’s defenses are compromised or when it becomes established in a part of the body natural to it", "It causes disease only in healthy persons who have normal immune defenses", "It causes disease only through the ingestion of toxins by the host", "It causes disease when a toxin spreads throughout the bloodstream of the host"], 0, "True pathogens cause disease in healthy persons with normal immune defenses; opportunistic pathogens need compromised defenses or a natural-site establishment."], ["Which pairing is correct?", ["Intoxication: a toxin spread throughout the bloodstream", "Toxigenicity: disease caused primarily by ingestion of toxins", "Toxinosis: the tendency of a pathogen to produce toxins", "Toximia: a toxin spread throughout the bloodstream"], 3, "Toximia (toxin + blood) = toxin spread throughout the bloodstream. Intoxication = ingestion; toxigenicity = tendency to produce toxins; toxinosis = disease mainly due to toxin production and release."], ["Which statement correctly contrasts pathogenicity and virulence?", ["Pathogenicity is the relative capacity of a pathogen to invade and harm host cells; virulence is the capacity of microbes to cause disease or infection", "Pathogenicity is the capacity of microbes to cause disease or infection; virulence is the relative capacity of a pathogen to invade and harm host cells", "Pathogenicity is the tendency to produce toxins; virulence is the capacity to induce physical damage", "Pathogenicity is a structure that establishes a microbe in the host; virulence is the state of toxicity in the body"], 1, "Pathogenicity = capacity to cause disease or infection. Virulence = relative capacity of a pathogen to invade and harm host cells."], ["How does a mixed (synergistic) infection differ from a secondary infection?", ["Mixed: an infection compounds a preexisting one; secondary: several different pathogens interact simultaneously", "Mixed: confined to one tissue; secondary: spread through the circulation", "Mixed: rapid onset and short duration; secondary: persists over a long duration", "Mixed: several different pathogens interact simultaneously; secondary: an infection compounds a preexisting one"], 3, "Mixed infection involves pathogens interacting simultaneously; a secondary infection is added on top of an existing one."], ["Which pair of branches contains one taxonomic branch and one integrative branch?", ["Virology and microbial genetics", "Bacteriology and mycology", "Microbial ecology and microbial physiology", "Parasitology and immunology"], 0, "Virology is taxonomic (study of viruses); microbial genetics is integrative. The other pairs are both taxonomic or both integrative."], ["Which scientist both developed agar growth medium and gave a systematic method to establish the microbial cause of disease?", ["Louis Pasteur", "Ferdinand Cohn", "Robert Koch", "Robert Hooke"], 2, "Koch identified anthrax, developed agar growth medium, and gave Koch’s postulates."], ["Which scientist is correctly matched with a contribution?", ["Louis Pasteur: identified anthrax and developed agar growth medium", "Ferdinand Cohn: first classification scheme based on bacterial shape", "Robert Koch: observed the fruiting bodies of molds", "Anton van Leeuwenhoek: coined the term “cell”"], 1, "Cohn classified bacteria by shape. Pasteur defined pasteurization and Germ Theory; Koch identified anthrax; Hooke coined “cell”; Leeuwenhoek observed the first bacteria."], ["Which pairing of application and example is correct?", ["Antibiotic production: biosynthesis of xanthan, alginate and cellulose", "Bioremediation: production of penicillins and cephalosporins", "Biotechnological enzymes: vehicles for cloning in plants", "Industrial fermentation: production of alcohol (vinegar) and dairy products"], 3, "Fermentation = alcohol (vinegar, Acetobacteraceae) and dairy products. Penicillins and cephalosporins are antibiotics; xanthan, alginate and cellulose are biosynthesis products."], ["Dental caries and periodontal disease caused by normal flora of the oral cavity are given as examples of:", ["Classic opportunistic infections", "Systemic infections caused by toxins", "Mixed infections caused by Penicillium", "Primary infections caused by contaminating bacteria from the environment"], 0, "The lecture gives these as classic opportunistic infections caused by normal flora of the oral cavity."], ["Where are normal flora and contaminating bacteria found, and what is the status of blood and internal tissues?", ["In blood and internal tissues; body surfaces are sterile", "On body surfaces; blood and internal tissues are sterile", "On body surfaces; blood and internal tissues are also colonized by normal flora", "Only in the blood; body surfaces and internal tissues are sterile"], 1, "Normal flora and contaminating bacteria are found on body surfaces; blood and internal tissues are sterile."]], [["A previously healthy person develops an initial infection that is later complicated by an additional infection. In another patient, several different pathogens act together at the same time to cause an infection. Which option names these in order (initial; complicating; multi-pathogen)?", ["Secondary; primary; focal", "Primary; secondary; mixed (synergistic)", "Primary; mixed; secondary", "Localized; secondary; systemic"], 1, "Primary = initial infection in a healthy individual; secondary = compounds the preexisting one; mixed = several pathogens interacting simultaneously."], ["A patient had contact with an infectious agent, then developed a short period of mild symptoms. Now the agent multiplies at high levels, shows its greatest toxicity and is well established in the target tissues. Which phase is the patient in, and which phase immediately preceded it?", ["Prodromal stage, preceded by the convalescent period", "Convalescent period, preceded by the period of invasion", "Incubation period, preceded by the period of invasion", "Period of invasion, preceded by the prodromal stage"], 3, "High multiplication, greatest toxicity and establishment in target tissues describe the period of invasion, which follows the prodromal stage."], ["Infection A stays confined to one tissue. Infection B arises when the agent from A breaks loose and is carried by the circulation to other tissues. Infection C invades many compartments and organs via the circulation throughout the body. Which classification is correct?", ["A: focal; B: localized; C: systemic", "A: localized; B: systemic; C: focal", "A: localized; B: focal; C: systemic", "A: systemic; B: focal; C: localized"], 2, "Localized = confined; focal = agent breaks loose from a localized infection; systemic = occurs throughout the body via the circulation."], ["Match: (1) ingestion of toxins; (2) a toxin spread throughout the bloodstream; (3) a disease whose adverse effects are primarily due to production and release of toxins; (4) the tendency of a pathogen to produce toxins.", ["1: intoxication; 2: toximia; 3: toxinosis; 4: toxigenicity", "1: toximia; 2: intoxication; 3: toxigenicity; 4: toxinosis", "1: intoxication; 2: toxinosis; 3: toximia; 4: toxigenicity", "1: toxigenicity; 2: toximia; 3: intoxication; 4: toxinosis"], 0, "Intoxication = ingestion (botulism); toximia = toxin + blood; toxinosis = disease mainly due to toxin production and release; toxigenicity = tendency to produce toxins."], ["A member of the normal flora on a body surface does not cause disease until the host’s anatomical barriers, tissue resistance, or immunity are compromised; then disease develops. Which terms from the lecture apply?", ["Opportunistic pathogen; endogenous bacterial disease (bacteria “from within”)", "True (primary) pathogen; focal infection spread by the circulation", "Opportunistic pathogen; toximia (toxin spread in the blood)", "True (primary) pathogen; endogenous bacterial disease (bacteria “from within”)"], 0, "Normal flora are potential pathogens that cause disease only when host defenses are compromised (opportunistic). Disease caused by flora from within is an endogenous bacterial disease."], ["Two patients are exposed to the same bacterium, but only one develops infectious disease. Which statement best reflects the lecture’s explanation?", ["Infection always leads to infectious disease; the number of infectious bacteria is the only factor that matters", "Host defenses matter least; the route of entry is the most important factor in the outcome", "Infection does not necessarily lead to infectious disease; route of entry, number of bacteria and, most importantly, host defenses determine the outcome", "A bacterium that breaches a body surface causes disease only if it is not part of the normal flora"], 2, "The outcome depends on route of entry, number of infectious bacteria, and the status of the host defenses (most importantly)."], ["Classify each branch as taxonomic or integrative: (a) how genes are organized and regulated in microbes; (b) the study of fungi; (c) the relationship between microorganisms and their environment; (d) the study of viruses.", ["(a) taxonomic; (b) integrative; (c) integrative; (d) taxonomic", "(a) integrative; (b) taxonomic; (c) integrative; (d) taxonomic", "(a) integrative; (b) integrative; (c) taxonomic; (d) taxonomic", "(a) taxonomic; (b) taxonomic; (c) integrative; (d) integrative"], 1, "Microbial genetics and microbial ecology are integrative; mycology and virology are taxonomic branches named for the group studied."], ["A bacterium breaches a body surface, becomes established and multiplies, but causes no damage or toxicity. Which statement is correct?", ["Infectious disease has occurred, because any breach of a surface produces damage", "Neither has occurred, because only normal flora can cause infection", "Toximia has occurred, because the bacterium has entered the blood", "Infection has occurred, but infectious disease has not necessarily developed"], 3, "Infection = entry, establishment and multiplication; infectious disease = damage or toxicity. Infection probably rarely leads to infectious disease."], ["Which option correctly pairs the scientists with the earliest and the latest listed life dates (Leeuwenhoek, Pasteur, Cohn, Koch) with their contributions?", ["Earliest: Pasteur, observed the first bacteria; latest: Cohn, identified anthrax and developed agar growth medium", "Earliest: Leeuwenhoek, defined pasteurization; latest: Koch, developed the first classification based on shape", "Earliest: Leeuwenhoek, observed the first bacteria; latest: Koch, identified anthrax and developed agar growth medium", "Earliest: Cohn, defined Germ Theory; latest: Pasteur, identified anthrax"], 2, "Leeuwenhoek (1632–1723) observed the first bacteria; Pasteur (1822–1895), Cohn (1828–1898); Koch (1843–1910) identified anthrax and developed agar growth medium."], ["A company uses microorganisms to treat domestic, agricultural and industrial wastes and subsurface pollution in soils, sediments and marine environments, and also to produce xanthan, alginate and cellulose. Which two benefits are being used?", ["Microbial biodegradation/bioremediation and biosynthesis", "Industrial fermentation and antibiotic production", "Vehicles for cloning and probiotics", "Biotechnological enzyme production and industrial fermentation"], 0, "Waste and pollution treatment = biodegradation or bioremediation; xanthan, alginate and cellulose = biosynthesis."]]];
+// level boxes
+function lvBuild(el,data,cb){const w=$(el);w.innerHTML="";LV.forEach((l,i)=>{const b=E("button","lvb"+(i==0?" on":""),"<b>"+l[0]+"</b><span>"+l[1]+" · "+data[i].length+"</span>");b.onclick=()=>{w.querySelectorAll(".lvb").forEach(x=>x.classList.remove("on"));b.classList.add("on");cb(i)};w.append(b)})}
+// flash cards
+let fd=F[0].slice(),fi=0,fL=0;
+function fr(){const c=fd[fi];$("#fc").classList.remove("f");$("#fq").textContent=c[0];const b=$("#fans");b.innerHTML="";const k=(t,x,cl)=>{b.append(E("div","tg",t));const d=E("div",cl,"");d.textContent=x;b.append(d)};k("Back",c[1],"bt");k("Explanation",c[2],"bt ex");$("#fn").textContent=LV[fL][0]+" · "+LV[fL][1]+" · Card "+String(c[3]).padStart(2,"0")+" ("+(fi+1)+" of "+fd.length+")"}
+const fl=()=>$("#fc").classList.toggle("f");
+$("#fc").onclick=fl;$("#ff").onclick=fl;$("#fc").onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();fl()}};
+$("#fx").onclick=()=>{fi=(fi+1)%fd.length;fr()};$("#fp").onclick=()=>{fi=(fi-1+fd.length)%fd.length;fr()};$("#fs").onclick=()=>{fd=sh(fd);fi=0;fr()};
+lvBuild("#fl",F,i=>{fL=i;fd=F[i].slice();fi=0;fr()});fr();
+// quiz
+let qi,qs,qo,qL=0;
+function qstart(){qo=sh(Q[qL]);qi=0;qs=0;qshow()}
+function qshow(){const z=$("#qz");z.innerHTML="";if(qi>=qo.length){z.innerHTML="<div class='card'><h3>"+LV[qL][0]+" score: "+qs+" / "+qo.length+"</h3><p>"+Math.round(qs/qo.length*100)+"% correct.</p></div>";const b=E("button","btn","Try again");b.onclick=qstart;z.append(b);return}
+const [q,opts,ci,ex]=qo[qi];z.append(E("div","prog","<i style='width:"+qi/qo.length*100+"%'></i>"));
+const card=E("div","card","<small>"+LV[qL][0]+" · Difficulty: "+LV[qL][1]+" · Question "+(qi+1)+" of "+qo.length+" · Score "+qs+"</small>");
+card.append(E("h3","",""));card.lastChild.textContent=q;
+const nx=E("button","btn",qi==qo.length-1?"See score":"Next question");nx.style.display="none";nx.onclick=()=>{qi++;qshow()};
+const bs=[];opts.forEach((o,i)=>{const b=E("button","opt","");b.textContent=o;bs.push(b);b.onclick=()=>{if(card.dataset.d)return;card.dataset.d=1;if(i==ci){qs++;b.classList.add("ok")}else{b.classList.add("no");bs[ci].classList.add("ok")}
+const n=E("div","note","");n.innerHTML="<b>Correct answer: "+"ABCD"[ci]+") </b>";n.append(document.createTextNode(opts[ci]));n.append(E("br"));n.append(document.createTextNode("Explanation: "+ex));card.insertBefore(n,nx);nx.style.display="inline-block"};card.append(b)});
+card.append(nx);z.append(card)}
+lvBuild("#ql",Q,i=>{qL=i;qstart()});qstart();
+</script></body></html>
